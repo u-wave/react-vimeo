@@ -221,7 +221,7 @@ class Vimeo extends React.Component {
           break;
         case 'width':
         case 'height':
-          this.container[name] = value; // eslint-disable-line no-param-reassign
+          this.player.element[name] = value; // eslint-disable-line no-param-reassign
           break;
         case 'video':
           if (value) {
