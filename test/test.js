@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { createRenderer } from 'react-dom/test-utils';
+import React from 'react';
+import { createRenderer } from 'react-test-renderer/shallow';
 import expect from 'expect';
 import render from './util/render';
 import createVimeo from './util/createVimeo';
