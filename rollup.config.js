@@ -5,10 +5,10 @@ const meta = require('./package.json');
 process.env.BABEL_ENV = 'rollup';
 
 export default {
-  entry: './src/index.js',
-  targets: [
-    { format: 'cjs', dest: meta.main, exports: 'named' },
-    { format: 'es', dest: meta.module },
+  input: './src/index.js',
+  output: [
+    { format: 'cjs', file: meta.main, exports: 'named' },
+    { format: 'es', file: meta.module },
   ],
 
   external: Object.keys(meta.dependencies)
