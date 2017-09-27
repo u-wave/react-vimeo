@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build",
-    "build": "browserify -t [ babelify --plugins transform-es2015-modules-commonjs ] -e app.js > bundle.js"
+    "build": "browserify -t babelify app.js > bundle.js",
+    "start": "ecstatic .",
+    "deploy": "npm install && surge . -d react-vimeo-demo.surge.sh"
   },
   "dependencies": {
+    "ecstatic": "^3.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
