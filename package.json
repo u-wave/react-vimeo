@@ -61,7 +61,7 @@
     "react-docgen": "^2.18.0",
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0",
-    "rollup": "^0.50.0",
+    "rollup": "^0.51.0",
     "rollup-plugin-babel": "^3.0.2",
     "through2": "^2.0.3"
   }
