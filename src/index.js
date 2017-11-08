@@ -4,7 +4,128 @@ import Player from '@vimeo/player';
 import eventNames from './eventNames';
 
 class Vimeo extends React.Component {
-  static propTypes = {
+  constructor(props) {
+    super(props);
+
+    this.refContainer = this.refContainer.bind(this);
+  }
+
+  componentDidMount() {
+    this.createPlayer();
+  }
+
+  componentDidUpdate(prevProps) {
+    const changes = Object.keys(this.props).filter(
+      name => this.props[name] !== prevProps[name]);
+
+    this.updateProps(changes);
+  }
+
+  /**
+   * @private
+   */
+  getInitialOptions() {
+    return {
+      id: this.props.video,
+      width: this.props.width,
+      height: this.props.height,
+      autopause: this.props.autopause,
+      autoplay: this.props.autoplay,
+      byline: this.props.showByline,
+      color: this.props.color,
+      loop: this.props.loop,
+      portrait: this.props.showPortrait,
+      title: this.props.showTitle,
+    };
+  }
+
+  /**
+   * @private
+   */
+  updateProps(propNames) {
+    const player = this.player;
+    propNames.forEach((name) => {
+      const value = this.props[name];
+      switch (name) {
+        case 'autopause':
+          player.setAutopause(value);
+          break;
+        case 'color':
+          player.setColor(value);
+          break;
+        case 'loop':
+          player.setLoop(value);
+          break;
+        case 'volume':
+          player.setVolume(value);
+          break;
+        case 'paused':
+          player.getPaused().then((paused) => {
+            if (value && !paused) {
+              return player.pause();
+            } else if (!value && paused) {
+              return player.play();
+            }
+            return null;
+          });
+          break;
+        case 'width':
+        case 'height':
+          this.player.element[name] = value; // eslint-disable-line no-param-reassign
+          break;
+        case 'video':
+          if (value) {
+            player.loadVideo(value);
+          } else {
+            player.unload();
+          }
+          break;
+        default:
+          // Nothing
+      }
+    });
+  }
+
+  /**
+   * @private
+   */
+  createPlayer() {
+    this.player = new Player(this.container, this.getInitialOptions());
+
+    Object.keys(eventNames).forEach((dmName) => {
+      const reactName = eventNames[dmName];
+      this.player.on(dmName, (event) => {
+        if (this.props[reactName]) {
+          this.props[reactName](event);
+        }
+      });
+    });
+
+    if (typeof this.props.volume === 'number') {
+      this.updateProps(['volume']);
+    }
+  }
+
+  /**
+   * @private
+   */
+  refContainer(container) {
+    this.container = container;
+  }
+
+  render() {
+    return (
+      <div
+        id={this.props.id}
+        className={this.props.className}
+        ref={this.refContainer}
+      />
+    );
+  }
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  Vimeo.propTypes = {
     /**
      * A Vimeo video ID or URL.
      */
@@ -150,128 +271,15 @@ class Vimeo extends React.Component {
 
     /* eslint-enable react/no-unused-prop-types */
   };
-
-  static defaultProps = {
-    autopause: true,
-    autoplay: false,
-    showByline: true,
-    loop: false,
-    showPortrait: true,
-    showTitle: true,
-  };
-
-  componentDidMount() {
-    this.createPlayer();
-  }
-
-  componentDidUpdate(prevProps) {
-    const changes = Object.keys(this.props).filter(
-      name => this.props[name] !== prevProps[name]);
-
-    this.updateProps(changes);
-  }
-
-  /**
-   * @private
-   */
-  getInitialOptions() {
-    return {
-      id: this.props.video,
-      width: this.props.width,
-      height: this.props.height,
-      autopause: this.props.autopause,
-      autoplay: this.props.autoplay,
-      byline: this.props.showByline,
-      color: this.props.color,
-      loop: this.props.loop,
-      portrait: this.props.showPortrait,
-      title: this.props.showTitle,
-    };
-  }
-
-  /**
-   * @private
-   */
-  updateProps(propNames) {
-    const player = this.player;
-    propNames.forEach((name) => {
-      const value = this.props[name];
-      switch (name) {
-        case 'autopause':
-          player.setAutopause(value);
-          break;
-        case 'color':
-          player.setColor(value);
-          break;
-        case 'loop':
-          player.setLoop(value);
-          break;
-        case 'volume':
-          player.setVolume(value);
-          break;
-        case 'paused':
-          player.getPaused().then((paused) => {
-            if (value && !paused) {
-              return player.pause();
-            } else if (!value && paused) {
-              return player.play();
-            }
-            return null;
-          });
-          break;
-        case 'width':
-        case 'height':
-          this.player.element[name] = value; // eslint-disable-line no-param-reassign
-          break;
-        case 'video':
-          if (value) {
-            player.loadVideo(value);
-          } else {
-            player.unload();
-          }
-          break;
-        default:
-          // Nothing
-      }
-    });
-  }
-
-  /**
-   * @private
-   */
-  createPlayer() {
-    this.player = new Player(this.container, this.getInitialOptions());
-
-    Object.keys(eventNames).forEach((dmName) => {
-      const reactName = eventNames[dmName];
-      this.player.on(dmName, (event) => {
-        if (this.props[reactName]) {
-          this.props[reactName](event);
-        }
-      });
-    });
-
-    if (typeof this.props.volume === 'number') {
-      this.updateProps(['volume']);
-    }
-  }
-
-  /**
-   * @private
-   */
-  refContainer = (container) => {
-    this.container = container;
-  }
-
-  render() {
-    return (
-      <div
-        id={this.props.id}
-        className={this.props.className}
-        ref={this.refContainer}
-      />
-    );
-  }
 }
+
+Vimeo.defaultProps = {
+  autopause: true,
+  autoplay: false,
+  showByline: true,
+  loop: false,
+  showPortrait: true,
+  showTitle: true,
+};
 
 export default Vimeo;

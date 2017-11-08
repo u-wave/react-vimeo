@@ -1,2 +1,2 @@
 test/*.js
---require babel-register
+--require @babel/register
