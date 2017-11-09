@@ -15,8 +15,7 @@ class Vimeo extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const changes = Object.keys(this.props).filter(
-      name => this.props[name] !== prevProps[name]);
+    const changes = Object.keys(this.props).filter(name => this.props[name] !== prevProps[name]);
 
     this.updateProps(changes);
   }
@@ -43,7 +42,7 @@ class Vimeo extends React.Component {
    * @private
    */
   updateProps(propNames) {
-    const player = this.player;
+    const { player } = this;
     propNames.forEach((name) => {
       const value = this.props[name];
       switch (name) {

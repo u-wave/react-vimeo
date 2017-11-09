@@ -6,7 +6,7 @@
  */
 
 const fs = require('fs');
-const parse = require('react-docgen').parse;
+const { parse } = require('react-docgen');
 const parseDoctrine = require('doctrine').parse;
 
 function generatePropType(type) {
