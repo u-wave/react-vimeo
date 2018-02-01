@@ -58,9 +58,6 @@ class Vimeo extends React.Component {
         case 'volume':
           player.setVolume(value);
           break;
-        case 'start':
-          player.setCurrentTime(value);
-          break;
         case 'paused':
           player.getPaused().then((paused) => {
             if (value && !paused) {
@@ -78,6 +75,10 @@ class Vimeo extends React.Component {
         case 'video':
           if (value) {
             player.loadVideo(value);
+            // Set the start time only when loading a new video.
+            if (typeof this.props.start === 'number') {
+              player.setCurrentTime(this.props.start);
+            }
           } else {
             player.unload();
           }
