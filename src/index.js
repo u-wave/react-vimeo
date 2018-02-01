@@ -58,6 +58,9 @@ class Vimeo extends React.Component {
         case 'volume':
           player.setVolume(value);
           break;
+        case 'start':
+          player.setCurrentTime(value);
+          break;
         case 'paused':
           player.getPaused().then((paused) => {
             if (value && !paused) {
@@ -99,6 +102,10 @@ class Vimeo extends React.Component {
         }
       });
     });
+
+    if (typeof this.props.start === 'number') {
+      this.player.setCurrentTime(this.props.start);
+    }
 
     if (typeof this.props.volume === 'number') {
       this.updateProps(['volume']);
@@ -161,9 +168,14 @@ if (process.env.NODE_ENV !== 'production') {
     paused: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
 
     /**
-     *
+     * The playback volume as a number between 0 and 1.
      */
     volume: PropTypes.number,
+
+    /**
+     * The time in seconds at which to start playing the video.
+     */
+    start: PropTypes.number,
 
     // Player parameters
     /**

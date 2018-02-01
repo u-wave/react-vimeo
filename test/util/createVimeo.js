@@ -9,6 +9,7 @@ export default function createVimeo() {
       if (eventName === 'ready') fn();
     }),
     setVolume: createSpy(),
+    setCurrentTime: createSpy(),
     setAutopause: createSpy(),
     setColor: createSpy(),
     setLoop: createSpy(),

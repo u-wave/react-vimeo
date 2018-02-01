@@ -33,7 +33,8 @@ import Vimeo from '@u-wave/react-vimeo';
 | width | union |  | Width of the player element. |
 | height | union |  | Height of the player element. |
 | paused | bool |  | Pause the video. |
-| volume | number |  |  |
+| volume | number |  | The playback volume as a number between 0 and 1. |
+| start | number |  | The time in seconds at which to start playing the video. |
 | autopause | bool | true | Pause this video automatically when another one plays. |
 | autoplay | bool | false | Automatically start playback of the video. Note that this won’t work on some devices. |
 | showByline | bool | true | Show the byline on the video. |

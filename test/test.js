@@ -68,6 +68,14 @@ describe('Vimeo', () => {
     expect(playerMock.setVolume).toHaveBeenCalledWith(1);
   });
 
+  it('should set the start time using the "start" prop', async () => {
+    const { playerMock, rerender } = await render({
+      video: 169408731,
+      start: 60,
+    });
+    expect(playerMock.setCurrentTime).toHaveBeenCalledWith(60);
+  });
+
   it('should set the player color using the "color" prop', async () => {
     const { playerMock, sdkMock, rerender } = await render({
       video: 169408731,
