@@ -2,8 +2,8 @@
   "name": "@u-wave/react-vimeo",
   "version": "0.3.1",
   "description": "Vimeo player component for React.",
-  "main": "lib/rollup.js",
-  "module": "lib/rollup.es.js",
+  "main": "dist/react-vimeo.js",
+  "module": "dist/react-vimeo.es.js",
   "scripts": {
     "prepublish": "npm run build",
     "build": "rollup -c",
