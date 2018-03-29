@@ -38,6 +38,8 @@ import Vimeo from '@u-wave/react-vimeo';
 | autopause | bool | true | Pause this video automatically when another one plays. |
 | autoplay | bool | false | Automatically start playback of the video. Note that this won’t work on some devices. |
 | showByline | bool | true | Show the byline on the video. |
+| muted | bool | false | Starts the player in a muted state (required for autoplay on some devices). |
+| background | bool | false | Enable the player's background mode which hides the controls and autoplays the video (required for autoplay on some devices). |
 | color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. |
 | loop | bool | false | Play the video again when it reaches the end. |
 | showPortrait | bool | true | Show the portrait on the video. |
