@@ -3,3 +3,4 @@ node_modules
 /example/bundle.js
 /generated-docs.md
 .eslintcache
+package-lock.json
