@@ -20,6 +20,10 @@ class Vimeo extends React.Component {
     this.updateProps(changes);
   }
 
+  componentWillUnmount() {
+    this.player.destroy();
+  }
+
   /**
    * @private
    */

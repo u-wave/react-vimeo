@@ -130,4 +130,16 @@ describe('Vimeo', () => {
     expect(playerMock.setWidth).toHaveBeenCalledWith('100%');
     expect(playerMock.setHeight).toHaveBeenCalledWith(800);
   });
+
+  it('should destroy player when unmounting', async () => {
+    const { playerMock, unmount } = await render({
+      video: 169408731,
+      width: 640,
+      height: 320,
+    });
+
+    await unmount();
+
+    expect(playerMock.destroy).toHaveBeenCalled();
+  });
 });

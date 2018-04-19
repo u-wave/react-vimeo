@@ -24,6 +24,7 @@ export default function createVimeo() {
     getPaused() {
       return Promise.resolve(isPaused);
     },
+    destroy: createSpy(),
     setWidth: createSpy(),
     setHeight: createSpy(),
     element: {
