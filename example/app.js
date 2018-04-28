@@ -1,6 +1,6 @@
 /* global document */
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Vimeo from '../';
 
 const videos = [
@@ -10,34 +10,43 @@ const videos = [
 ];
 
 class App extends React.Component {
-  state = {
-    video: 0,
-    volume: 1,
-    paused: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      video: 0,
+      volume: 1,
+      paused: false,
+    };
+
+    this.handlePause = this.handlePause.bind(this);
+    this.handlePlayerPause = this.handlePlayerPause.bind(this);
+    this.handlePlayerPlay = this.handlePlayerPlay.bind(this);
+    this.handleVolume = this.handleVolume.bind(this);
+  }
 
   selectVideo(index) {
     this.setState({ video: index });
   }
 
-  handlePause = (event) => {
+  handlePause(event) {
     this.setState({
       paused: event.target.checked,
     });
-  };
+  }
 
-  handlePlayerPause = () => {
+  handlePlayerPause() {
     this.setState({ paused: true });
-  };
-  handlePlayerPlay = () => {
+  }
+  handlePlayerPlay() {
     this.setState({ paused: false });
-  };
+  }
 
-  handleVolume = (event) => {
+  handleVolume(event) {
     this.setState({
       volume: parseFloat(event.target.value),
     });
-  };
+  }
 
   render() {
     const video = videos[this.state.video];
