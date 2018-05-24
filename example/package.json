@@ -6,14 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build",
-    "build": "browserify -t [ babelify --plugins transform-es2015-modules-commonjs ] -e app.js > bundle.js"
+    "build": "cross-env BABEL_ENV=cjs browserify -t babelify app.js > bundle.js",
+    "start": "ecstatic ."
   },
   "dependencies": {
+    "ecstatic": "^3.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
-    "babelify": "^7.3.0",
-    "browserify": "^13.3.0"
+    "@babel/core": "7.0.0-beta.47",
+    "babelify": "^9.0.0",
+    "browserify": "^16.2.2",
+    "cross-env": "^5.1.6"
   }
 }
