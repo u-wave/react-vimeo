@@ -1,7 +1,7 @@
 /* global document */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Vimeo from '../';
+import Vimeo from '..';
 
 const videos = [
   { id: 115783408, name: 'Jambinai - Connection' },
@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      video: 0,
+      videoIndex: 0,
       volume: 1,
       paused: false,
     };
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   selectVideo(index) {
-    this.setState({ video: index });
+    this.setState({ videoIndex: index });
   }
 
   handlePause(event) {
@@ -38,6 +38,7 @@ class App extends React.Component {
   handlePlayerPause() {
     this.setState({ paused: true });
   }
+
   handlePlayerPlay() {
     this.setState({ paused: false });
   }
@@ -49,11 +50,15 @@ class App extends React.Component {
   }
 
   render() {
-    const video = videos[this.state.video];
+    const { videoIndex, paused, volume } = this.state;
+
+    const video = videos[videoIndex];
     return (
       <div className="row">
         <div className="col s3">
-          <h3>Video</h3>
+          <h3>
+            Video
+          </h3>
           <div className="collection">
             {videos.map((choice, index) => (
               <a
@@ -65,20 +70,26 @@ class App extends React.Component {
               </a>
             ))}
           </div>
-          <h3>Paused</h3>
+          <h3>
+            Paused
+          </h3>
           <p>
             <input
               type="checkbox"
               id="paused"
-              checked={this.state.paused}
+              checked={paused}
               onChange={this.handlePause}
             />
-            <label htmlFor="paused">Paused</label>
+            <label htmlFor="paused">
+              Paused
+            </label>
           </p>
-          <h3>Volume</h3>
+          <h3>
+            Volume
+          </h3>
           <input
             type="range"
-            value={this.state.volume}
+            value={volume}
             min={0}
             max={1}
             step={0.01}
@@ -91,8 +102,8 @@ class App extends React.Component {
             width={640}
             height={480}
             autoplay
-            volume={this.state.volume}
-            paused={this.state.paused}
+            volume={volume}
+            paused={paused}
             onPause={this.handlePlayerPause}
             onPlay={this.handlePlayerPlay}
           />

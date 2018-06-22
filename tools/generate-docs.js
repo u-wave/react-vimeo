@@ -40,8 +40,8 @@ function generateDescription(required, description, type) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach((tag) => {
       if (tag.description) {
-        tag.description = // eslint-disable-line no-param-reassign
-          tag.description.replace(/\n/g, ' ');
+        // eslint-disable-next-line no-param-reassign
+        tag.description = tag.description.replace(/\n/g, ' ');
       }
     });
 
@@ -74,8 +74,8 @@ function generateDescription(required, description, type) {
 }
 
 function render(code) {
-  let text = '| Name | Type | Default | Description |\n' +
-             '|:-----|:-----|:-----|:-----|\n';
+  let text = '| Name | Type | Default | Description |\n'
+             + '|:-----|:-----|:-----|:-----|\n';
 
   const componentInfo = parse(code);
 

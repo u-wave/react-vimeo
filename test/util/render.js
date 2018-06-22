@@ -39,12 +39,13 @@ const render = (props) => {
   });
 
   function rerender(newProps) {
-    return container.then(wrapper =>
+    return container.then(wrapper => (
       new Promise((resolve) => {
         wrapper.setState(newProps, () => {
           Promise.resolve().then(resolve);
         });
-      }));
+      })
+    ));
   }
 
   function unmount() {
