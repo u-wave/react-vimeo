@@ -15,6 +15,7 @@ class Vimeo extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // eslint-disable-next-line react/destructuring-assignment
     const changes = Object.keys(this.props).filter(name => this.props[name] !== prevProps[name]);
 
     this.updateProps(changes);
@@ -28,6 +29,7 @@ class Vimeo extends React.Component {
    * @private
    */
   getInitialOptions() {
+    /* eslint-disable react/destructuring-assignment */
     return {
       id: this.props.video,
       width: this.props.width,
@@ -42,6 +44,7 @@ class Vimeo extends React.Component {
       muted: this.props.muted,
       background: this.props.background,
     };
+    /* eslint-enable react/destructuring-assignment */
   }
 
   /**
@@ -50,6 +53,7 @@ class Vimeo extends React.Component {
   updateProps(propNames) {
     const { player } = this;
     propNames.forEach((name) => {
+      // eslint-disable-next-line react/destructuring-assignment
       const value = this.props[name];
       switch (name) {
         case 'autopause':
@@ -68,7 +72,8 @@ class Vimeo extends React.Component {
           player.getPaused().then((paused) => {
             if (value && !paused) {
               return player.pause();
-            } else if (!value && paused) {
+            }
+            if (!value && paused) {
               return player.play();
             }
             return null;
@@ -76,14 +81,15 @@ class Vimeo extends React.Component {
           break;
         case 'width':
         case 'height':
-          this.player.element[name] = value; // eslint-disable-line no-param-reassign
+          player.element[name] = value;
           break;
         case 'video':
           if (value) {
+            const { start } = this.props;
             player.loadVideo(value);
             // Set the start time only when loading a new video.
-            if (typeof this.props.start === 'number') {
-              player.setCurrentTime(this.props.start);
+            if (typeof start === 'number') {
+              player.setCurrentTime(start);
             }
           } else {
             player.unload();
@@ -99,22 +105,26 @@ class Vimeo extends React.Component {
    * @private
    */
   createPlayer() {
+    const { start, volume } = this.props;
+
     this.player = new Player(this.container, this.getInitialOptions());
 
     Object.keys(eventNames).forEach((dmName) => {
       const reactName = eventNames[dmName];
       this.player.on(dmName, (event) => {
-        if (this.props[reactName]) {
-          this.props[reactName](event);
+        // eslint-disable-next-line react/destructuring-assignment
+        const handler = this.props[reactName];
+        if (handler) {
+          handler(event);
         }
       });
     });
 
-    if (typeof this.props.start === 'number') {
-      this.player.setCurrentTime(this.props.start);
+    if (typeof start === 'number') {
+      this.player.setCurrentTime(start);
     }
 
-    if (typeof this.props.volume === 'number') {
+    if (typeof volume === 'number') {
       this.updateProps(['volume']);
     }
   }
@@ -127,10 +137,12 @@ class Vimeo extends React.Component {
   }
 
   render() {
+    const { id, className } = this.props;
+
     return (
       <div
-        id={this.props.id}
-        className={this.props.className}
+        id={id}
+        className={className}
         ref={this.refContainer}
       />
     );
