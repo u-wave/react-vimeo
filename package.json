@@ -43,7 +43,7 @@
     "@babel/register": "7.0.0-beta.51",
     "cross-env": "^5.1.4",
     "doctrine": "^2.1.0",
-    "eslint": "^4.19.1",
+    "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
