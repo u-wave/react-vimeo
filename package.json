@@ -40,7 +40,7 @@
     "@babel/core": "7.0.0-beta.51",
     "@babel/preset-env": "7.0.0-beta.51",
     "@babel/preset-react": "7.0.0-beta.51",
-    "@babel/register": "7.0.0-beta.51",
+    "@babel/register": "7.0.0-beta.52",
     "cross-env": "^5.1.4",
     "doctrine": "^2.1.0",
     "eslint": "^4.19.1",
