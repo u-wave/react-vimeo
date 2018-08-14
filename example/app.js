@@ -74,14 +74,14 @@ class App extends React.Component {
             Paused
           </h3>
           <p>
-            <input
-              type="checkbox"
-              id="paused"
-              checked={paused}
-              onChange={this.handlePause}
-            />
             <label htmlFor="paused">
-              Paused
+              <input
+                type="checkbox"
+                id="paused"
+                checked={paused}
+                onChange={this.handlePause}
+              />
+              <span>Paused</span>
             </label>
           </p>
           <h3>
