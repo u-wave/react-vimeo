@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.0.0-rc.1",
-    "@babel/preset-env": "7.0.0-beta.53",
+    "@babel/preset-env": "7.0.0-rc.1",
     "@babel/preset-react": "7.0.0-beta.53",
     "@babel/register": "7.0.0-beta.53",
     "cross-env": "^5.1.4",
