@@ -39,7 +39,7 @@
   "devDependencies": {
     "@babel/core": "7.0.0-rc.4",
     "@babel/preset-env": "7.0.0-rc.3",
-    "@babel/preset-react": "7.0.0-rc.3",
+    "@babel/preset-react": "7.0.0-rc.4",
     "@babel/register": "7.0.0-rc.3",
     "cross-env": "^5.1.4",
     "doctrine": "^2.1.0",
