@@ -55,10 +55,10 @@ class App extends React.Component {
     const video = videos[videoIndex];
     return (
       <div className="row">
-        <div className="col s3">
-          <h3>
+        <div className="col s4">
+          <h5>
             Video
-          </h3>
+          </h5>
           <div className="collection">
             {videos.map((choice, index) => (
               <a
@@ -70,9 +70,9 @@ class App extends React.Component {
               </a>
             ))}
           </div>
-          <h3>
+          <h5>
             Paused
-          </h3>
+          </h5>
           <p>
             <label htmlFor="paused">
               <input
@@ -84,9 +84,9 @@ class App extends React.Component {
               <span>Paused</span>
             </label>
           </p>
-          <h3>
+          <h5>
             Volume
-          </h3>
+          </h5>
           <input
             type="range"
             value={volume}
@@ -96,7 +96,7 @@ class App extends React.Component {
             onChange={this.handleVolume}
           />
         </div>
-        <div className="col s9 center-align">
+        <div className="col s8 center-align">
           <Vimeo
             video={video.id}
             width={640}
