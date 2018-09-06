@@ -52,7 +52,7 @@
     "global": "^4.3.1",
     "mocha": "^5.1.1",
     "proxyquire": "^2.0.1",
-    "react": "^16.3.2",
+    "react": "^16.5.0",
     "react-docgen": "^2.20.1",
     "react-dom": "^16.3.2",
     "react-test-renderer": "^16.3.2",
