@@ -57,8 +57,7 @@
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.5.0",
     "rollup": "^0.66.0",
-    "rollup-plugin-babel": "^4.0.2",
-    "through2": "^2.0.3"
+    "rollup-plugin-babel": "^4.0.2"
   },
   "greenkeeper": {
     "ignore": [
