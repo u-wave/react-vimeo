@@ -255,7 +255,8 @@ if (process.env.NODE_ENV !== 'production') {
     /* eslint-disable react/no-unused-prop-types */
 
     /**
-     * Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter.
+     * Sent when the Vimeo player API has loaded.
+     * Receives the Vimeo player object in the first parameter.
      */
     onReady: PropTypes.func,
     /**
