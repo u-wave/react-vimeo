@@ -5,9 +5,10 @@ export default function createVimeo() {
   let isPaused = true;
 
   const playerMock = {
-    on: createSpy().andCall((eventName, fn) => {
-      if (eventName === 'ready') fn();
-    }),
+    on: createSpy(),
+    ready() {
+      return Promise.resolve();
+    },
     setVolume: createSpy(),
     setCurrentTime: createSpy(),
     setAutopause: createSpy(),

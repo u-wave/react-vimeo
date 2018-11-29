@@ -1,5 +1,4 @@
 export default {
-  ready: 'onReady',
   play: 'onPlay',
   pause: 'onPause',
   ended: 'onEnd',

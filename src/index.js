@@ -120,6 +120,13 @@ class Vimeo extends React.Component {
       });
     });
 
+    const { onReady } = this.props;
+    if (onReady) {
+      this.player.ready().then(() => {
+        onReady(this.player);
+      });
+    }
+
     if (typeof start === 'number') {
       this.player.setCurrentTime(start);
     }
@@ -248,7 +255,7 @@ if (process.env.NODE_ENV !== 'production') {
     /* eslint-disable react/no-unused-prop-types */
 
     /**
-     * Sent when the Vimeo player API has loaded.
+     * Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter.
      */
     onReady: PropTypes.func,
     /**

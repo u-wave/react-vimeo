@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRenderer } from 'react-test-renderer/shallow';
-import expect from 'expect';
+import expect, { createSpy } from 'expect';
 import render from './util/render';
 import createVimeo from './util/createVimeo';
 
@@ -19,11 +19,15 @@ describe('Vimeo', () => {
   });
 
   it('should create a Vimeo player when mounted', async () => {
-    const { sdkMock } = await render({
+    const onReady = createSpy();
+    const { sdkMock, playerMock } = await render({
       video: 169408731,
+      onReady,
     });
     expect(sdkMock).toHaveBeenCalled();
     expect(sdkMock.calls[0].arguments[1]).toMatch({ id: 169408731 });
+    expect(onReady).toHaveBeenCalled();
+    expect(onReady.calls[0].arguments[0]).toBe(playerMock);
   });
 
   it('should load a different video when "video" prop changes', async () => {
