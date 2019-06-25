@@ -43,6 +43,7 @@ class Vimeo extends React.Component {
       title: this.props.showTitle,
       muted: this.props.muted,
       background: this.props.background,
+      responsive: this.props.responsive,
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -251,6 +252,11 @@ if (process.env.NODE_ENV !== 'production') {
      */
     background: PropTypes.bool,
 
+    /**
+     * Enable responsive mode and resize according to parent element (experimental)
+     */
+    responsive: PropTypes.bool,
+
     // Events
     /* eslint-disable react/no-unused-prop-types */
 
@@ -330,6 +336,7 @@ Vimeo.defaultProps = {
   showTitle: true,
   muted: false,
   background: false,
+  responsive: false,
 };
 
 export default Vimeo;
