@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.7.0
+ * Add `responsive` prop that automatically fills the parent element. (@deJong in #80)
+
 ## 0.6.0
  * Add working `onReady` callback. You can use it to get access to the raw [@vimeo/player](https://github.com/vimeo/player.js) instance.
 
