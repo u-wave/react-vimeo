@@ -38,6 +38,7 @@ class Vimeo extends React.Component {
       autoplay: this.props.autoplay,
       byline: this.props.showByline,
       color: this.props.color,
+      controls: this.props.controls,
       loop: this.props.loop,
       portrait: this.props.showPortrait,
       title: this.props.showTitle,
@@ -62,6 +63,9 @@ class Vimeo extends React.Component {
           break;
         case 'color':
           player.setColor(value);
+          break;
+        case 'controls':
+          player.controls(value);
           break;
         case 'loop':
           player.setLoop(value);
@@ -227,6 +231,12 @@ if (process.env.NODE_ENV !== 'production') {
      */
     color: PropTypes.string,
 
+    // Player controls
+    /**
+     * Hide all elements in the player (play bar, sharing buttons, etc).
+     */
+    controls: PropTypes.bool,
+
     /**
      * Play the video again when it reaches the end.
      */
@@ -331,6 +341,7 @@ Vimeo.defaultProps = {
   autopause: true,
   autoplay: false,
   showByline: true,
+  controls: true,
   loop: false,
   showPortrait: true,
   showTitle: true,
