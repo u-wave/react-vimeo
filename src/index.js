@@ -64,9 +64,6 @@ class Vimeo extends React.Component {
         case 'color':
           player.setColor(value);
           break;
-        case 'controls':
-          player.controls(value);
-          break;
         case 'loop':
           player.setLoop(value);
           break;
