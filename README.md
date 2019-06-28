@@ -39,6 +39,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | autoplay | bool | false | Automatically start playback of the video. Note that this won’t work on some devices. |
 | showByline | bool | true | Show the byline on the video. |
 | color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. |
+| controls | bool | true | Hide all elements in the player (play bar, sharing buttons, etc). |
 | loop | bool | false | Play the video again when it reaches the end. |
 | showPortrait | bool | true | Show the portrait on the video. |
 | showTitle | bool | true | Show the title on the video. |
