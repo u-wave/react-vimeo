@@ -224,7 +224,7 @@ if (process.env.NODE_ENV !== 'production') {
 
     /**
      * Specify the color of the video controls. Colors may be overridden by the
-     * embed settings of the video.
+     * embed settings of the video. _(Ex: "ef2f9f")_
      */
     color: PropTypes.string,
 
