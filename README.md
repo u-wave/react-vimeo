@@ -27,11 +27,11 @@ import Vimeo from '@u-wave/react-vimeo';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| video | union |  | A Vimeo video ID or URL. |
+| video | number / string |  | A Vimeo video ID or URL. |
 | id | string |  | DOM ID for the player element. |
 | className | string |  | CSS className for the player element. |
-| width | union |  | Width of the player element. |
-| height | union |  | Height of the player element. |
+| width | number / string |  | Width of the player element. |
+| height | number / string |  | Height of the player element. |
 | paused | bool |  | Pause the video. |
 | volume | number |  | The playback volume as a number between 0 and 1. |
 | start | number |  | The time in seconds at which to start playing the video. |
