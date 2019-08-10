@@ -27,23 +27,25 @@ import Vimeo from '@u-wave/react-vimeo';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| video | union |  | A Vimeo video ID or URL. |
+| video | number / string |  | A Vimeo video ID or URL. |
 | id | string |  | DOM ID for the player element. |
 | className | string |  | CSS className for the player element. |
-| width | union |  | Width of the player element. |
-| height | union |  | Height of the player element. |
+| width | number / string |  | Width of the player element. |
+| height | number / string |  | Height of the player element. |
 | paused | bool |  | Pause the video. |
 | volume | number |  | The playback volume as a number between 0 and 1. |
 | start | number |  | The time in seconds at which to start playing the video. |
 | autopause | bool | true | Pause this video automatically when another one plays. |
 | autoplay | bool | false | Automatically start playback of the video. Note that this won’t work on some devices. |
 | showByline | bool | true | Show the byline on the video. |
-| color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. |
+| color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. _(Ex: "ef2f9f")_ |
+| controls | bool | true | Hide all elements in the player (play bar, sharing buttons, etc). |
 | loop | bool | false | Play the video again when it reaches the end. |
 | showPortrait | bool | true | Show the portrait on the video. |
 | showTitle | bool | true | Show the title on the video. |
 | muted | bool | false | Starts in a muted state to help with autoplay |
 | background | bool | false | Starts in a background state with no controls to help with autoplay |
+| responsive | bool | false | Enable responsive mode and resize according to parent element (experimental) |
 | onReady | function |  | Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter. |
 | onError | function |  | Sent when the player triggers an error. |
 | onPlay | function |  | Triggered when the video plays. |

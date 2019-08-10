@@ -19,6 +19,8 @@ function generatePropType(type) {
       const values = type.value.map(v => v.value).join('<br>&nbsp;');
       return `enum:<br>&nbsp;${values}<br>`;
     }
+    case 'union':
+      return type.value.map(v => v.name).join(' / ');
     default:
       return type.name;
   }

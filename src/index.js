@@ -38,11 +38,13 @@ class Vimeo extends React.Component {
       autoplay: this.props.autoplay,
       byline: this.props.showByline,
       color: this.props.color,
+      controls: this.props.controls,
       loop: this.props.loop,
       portrait: this.props.showPortrait,
       title: this.props.showTitle,
       muted: this.props.muted,
       background: this.props.background,
+      responsive: this.props.responsive,
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -222,9 +224,15 @@ if (process.env.NODE_ENV !== 'production') {
 
     /**
      * Specify the color of the video controls. Colors may be overridden by the
-     * embed settings of the video.
+     * embed settings of the video. _(Ex: "ef2f9f")_
      */
     color: PropTypes.string,
+
+    // Player controls
+    /**
+     * Hide all elements in the player (play bar, sharing buttons, etc).
+     */
+    controls: PropTypes.bool,
 
     /**
      * Play the video again when it reaches the end.
@@ -250,6 +258,11 @@ if (process.env.NODE_ENV !== 'production') {
      * Starts in a background state with no controls to help with autoplay
      */
     background: PropTypes.bool,
+
+    /**
+     * Enable responsive mode and resize according to parent element (experimental)
+     */
+    responsive: PropTypes.bool,
 
     // Events
     /* eslint-disable react/no-unused-prop-types */
@@ -325,11 +338,13 @@ Vimeo.defaultProps = {
   autopause: true,
   autoplay: false,
   showByline: true,
+  controls: true,
   loop: false,
   showPortrait: true,
   showTitle: true,
   muted: false,
   background: false,
+  responsive: false,
 };
 
 export default Vimeo;

@@ -1,6 +1,6 @@
 {
   "name": "@u-wave/react-vimeo",
-  "version": "0.6.0",
+  "version": "0.8.1",
   "description": "Vimeo player component for React.",
   "main": "dist/react-vimeo.js",
   "module": "dist/react-vimeo.es.js",
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/u-wave/react-vimeo#readme",
   "dependencies": {
-    "@vimeo/player": "^2.6.1",
+    "@vimeo/player": "^2.9.1",
     "prop-types": "^15.6.1"
   },
   "peerDependencies": {
