@@ -40,7 +40,7 @@ const render = (initialProps) => {
   });
 
   function rerender(newProps) {
-    return container.then(wrapper => (
+    return container.then((wrapper) => (
       new Promise((resolve) => {
         wrapper.setState({ props: newProps }, () => {
           Promise.resolve().then(resolve);
