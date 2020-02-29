@@ -5,7 +5,7 @@
   "main": "dist/react-vimeo.js",
   "module": "dist/react-vimeo.es.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "build": "rollup -c",
     "lint": "eslint --cache .",
     "test": "npm run lint && cross-env BABEL_ENV=test mocha",
