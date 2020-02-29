@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.8.2
+ * Call `onError()` prop if initial load fails (#96).
+ * Call `setCurrentTime()` after a new video has loaded. (#95)
+
 ## 0.8.1
  * Add color string example to docs. (@ivoilic in #82)
  * Fix documentation for union prop types.
