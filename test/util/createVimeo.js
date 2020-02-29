@@ -4,18 +4,20 @@ import proxyquire from 'proxyquire';
 export default function createVimeo() {
   let isPaused = true;
 
+  const createPromiseSpy = () => createSpy().andCall(() => Promise.resolve());
+
   const playerMock = {
     on: createSpy(),
     ready() {
       return Promise.resolve();
     },
-    setVolume: createSpy(),
-    setCurrentTime: createSpy(),
-    setAutopause: createSpy(),
-    setColor: createSpy(),
-    setLoop: createSpy(),
-    loadVideo: createSpy(),
-    unload: createSpy(),
+    setVolume: createPromiseSpy(),
+    setCurrentTime: createPromiseSpy(),
+    setAutopause: createPromiseSpy(),
+    setColor: createPromiseSpy(),
+    setLoop: createPromiseSpy(),
+    loadVideo: createPromiseSpy(),
+    unload: createPromiseSpy(),
     play: createSpy().andCall(() => {
       isPaused = false;
     }),
