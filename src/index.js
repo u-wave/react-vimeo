@@ -122,12 +122,18 @@ class Vimeo extends React.Component {
       });
     });
 
-    const { onReady } = this.props;
-    if (onReady) {
-      this.player.ready().then(() => {
+    const { onError, onReady } = this.props;
+    this.player.ready().then(() => {
+      if (onReady) {
         onReady(this.player);
-      });
-    }
+      }
+    }, (err) => {
+      if (onError) {
+        onError(err);
+      } else {
+        throw err;
+      }
+    });
 
     if (typeof start === 'number') {
       this.player.setCurrentTime(start);

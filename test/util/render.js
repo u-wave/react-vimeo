@@ -11,7 +11,9 @@ import createVimeo from './createVimeo';
 Object.assign(global, env);
 
 const render = (initialProps) => {
-  const { Vimeo, sdkMock, playerMock } = createVimeo();
+  const { Vimeo, sdkMock, playerMock } = createVimeo({
+    shouldFail: initialProps.shouldFail,
+  });
 
   let component;
   // Emulate changes to component.props using a container component's state

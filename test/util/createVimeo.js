@@ -1,13 +1,15 @@
 import { createSpy } from 'expect';
 import proxyquire from 'proxyquire';
 
-export default function createVimeo() {
+export default function createVimeo({ shouldFail = false } = {}) {
   let isPaused = true;
 
   const playerMock = {
     on: createSpy(),
     ready() {
-      return Promise.resolve();
+      return shouldFail
+        ? Promise.reject(new Error('artificial failure'))
+        : Promise.resolve();
     },
     setVolume: createSpy(),
     setCurrentTime: createSpy(),

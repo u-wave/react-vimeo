@@ -31,6 +31,20 @@ describe('Vimeo', () => {
     expect(onReady.calls[0].arguments[0]).toBe(playerMock);
   });
 
+  it('should all onError when `ready()` fails', async () => {
+    const onError = createSpy();
+    const { sdkMock } = render({
+      video: 404,
+      shouldFail: true,
+      onError,
+    });
+    await Promise.resolve();
+    expect(sdkMock).toHaveBeenCalled();
+    expect(sdkMock.calls[0].arguments[1]).toMatch({ id: 404 });
+    expect(onError).toHaveBeenCalled();
+    expect(onError.calls[0].arguments[0]).toEqual(new Error('artificial failure'));
+  });
+
   it('should load a different video when "video" prop changes', async () => {
     const { sdkMock, playerMock, rerender } = render({
       video: 169408731,
