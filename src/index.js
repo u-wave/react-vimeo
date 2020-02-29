@@ -88,10 +88,14 @@ class Vimeo extends React.Component {
         case 'video':
           if (value) {
             const { start } = this.props;
-            player.loadVideo(value);
+            const loaded = player.loadVideo(value);
             // Set the start time only when loading a new video.
+            // It seems like this has to be done after the video has loaded, else it just starts at
+            // the beginning!
             if (typeof start === 'number') {
-              player.setCurrentTime(start);
+              loaded.then(() => {
+                player.setCurrentTime(start);
+              });
             }
           } else {
             player.unload();
