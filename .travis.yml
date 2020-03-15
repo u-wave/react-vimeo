@@ -1,18 +1,13 @@
 language: node_js
-node_js:
-  - "stable"
-  - "10"
-  - "8"
-
-before_deploy:
-  - cd example && npm install && cd ..
-  - mkdir _deploy
-  - cp example/bundle.js example/index.html _deploy
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  local-dir: _deploy
-  on:
-    branch: master
-    node: stable
+os: linux
+dist: bionic
+jobs:
+  include:
+    - name: Test on stable Node.js
+      node_js: stable
+    - name: Test on Node.js 12
+      node_js: 12
+    - name: Test on Node.js 10
+      node_js: 10
+    - name: Test on Node.js 8
+      node_js: 8
