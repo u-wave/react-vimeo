@@ -59,5 +59,6 @@
     "react-test-renderer": "^16.13.0",
     "rollup": "^2.0.6",
     "rollup-plugin-babel": "^4.4.0"
-  }
+  },
+  "sideEffects": false
 }
