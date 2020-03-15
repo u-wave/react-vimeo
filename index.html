@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>@u-wave/react-vimeo example</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <style>
+      .primary { background-color: #9d2053 }
+      .nav-wrapper {
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+      }
+      .logo-wrapper { height: 48px; line-height: 48px; margin-right: 24px; }
+      .logo { height: 48px; }
+    </style>
+  </head>
+  <body>
+    <nav class="primary">
+      <div class="nav-wrapper">
+        <a href="https://u-wave.net" class="logo-wrapper">
+          <img src="https://u-wave.net/static/images/logo-white.png" alt="" class="logo">
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="https://hub.u-wave.net/" class="white-text btn-flat">Join</a></li>
+          <li><a href="https://u-wave.net/install" class="white-text btn-flat">Install</a></li>
+          <li><a href="https://u-wave.net/react-vimeo" class="white-text btn-flat">react-vimeo</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h1>@u-wave/react-vimeo example</h1>
+          <p>
+            An example Vimeo player using <a href="https://facebook.github.io/react">React</a>
+            and <a href="https://github.com/u-wave/react-vimeo">@u-wave/react-vimeo</a>.
+            <a href="https://github.com/u-wave/react-vimeo/tree/master/example">view source</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="example"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
