@@ -189,7 +189,7 @@ if (process.env.NODE_ENV !== 'production') {
     /**
      * Inline style for container element.
      */
-    style: PropTypes.object,
+    style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     /**
      * Width of the player element.
      */
