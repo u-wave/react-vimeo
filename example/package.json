@@ -7,17 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build",
     "build": "cross-env BABEL_ENV=cjs browserify -t babelify app.js > bundle.js",
-    "start": "ecstatic ."
+    "start": "serve ."
   },
   "dependencies": {
-    "ecstatic": "^3.2.1",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "serve": "^11.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-rc.3",
-    "babelify": "^9.0.0",
+    "@babel/core": "^7.0.0",
+    "babelify": "^10.0.0",
     "browserify": "^16.2.2",
-    "cross-env": "^5.2.0"
+    "cross-env": "^7.0.0"
   }
 }
