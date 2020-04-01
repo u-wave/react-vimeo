@@ -45,9 +45,7 @@ var eventNames = {
   loaded: 'onLoaded'
 };
 
-var Vimeo =
-/*#__PURE__*/
-function (_React$Component) {
+var Vimeo = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(Vimeo, _React$Component);
 
   function Vimeo(props) {
@@ -232,15 +230,12 @@ function (_React$Component) {
         id = _this$props3.id,
         className = _this$props3.className,
         style = _this$props3.style;
-    return (
-      /*#__PURE__*/
-      React.createElement("div", {
-        id: id,
-        className: className,
-        style: style,
-        ref: this.refContainer
-      })
-    );
+    return /*#__PURE__*/React.createElement("div", {
+      id: id,
+      className: className,
+      style: style,
+      ref: this.refContainer
+    });
   };
 
   return Vimeo;
@@ -462,39 +457,13 @@ var _ = _interopRequireDefault(require(".."));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _createSuper2(Derived) {
-  function isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-
-    try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  return function () {
-    var Super = _getPrototypeOf(Derived),
-        result;
-
-    if (isNativeReflectConstruct()) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-
-    return _possibleConstructorReturn(this, result);
-  };
-}
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -511,12 +480,10 @@ var videos = [{
   name: 'Hoody - Like You'
 }];
 
-var App =
-/*#__PURE__*/
-function (_React$Component) {
+var App = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(App, _React$Component);
 
-  var _super = _createSuper2(App);
+  var _super = _createSuper(App);
 
   function App(props) {
     var _this;
@@ -574,84 +541,52 @@ function (_React$Component) {
         paused = _this$state.paused,
         volume = _this$state.volume;
     var video = videos[videoIndex];
-    return (
-      /*#__PURE__*/
-      _react["default"].createElement("div", {
-        className: "row"
-      },
-      /*#__PURE__*/
-      _react["default"].createElement("div", {
-        className: "col s4"
-      },
-      /*#__PURE__*/
-      _react["default"].createElement("h5", null, "Video"),
-      /*#__PURE__*/
-      _react["default"].createElement("div", {
-        className: "collection"
-      }, videos.map(function (choice, index) {
-        return (
-          /*#__PURE__*/
-          _react["default"].createElement("a", {
-            href: "#!/video/" + index,
-            className: "collection-item " + (video === choice ? 'active' : ''),
-            onClick: function onClick() {
-              return _this2.selectVideo(index);
-            }
-          }, choice.name)
-        );
-      })),
-      /*#__PURE__*/
-      _react["default"].createElement("h5", null, "Paused"),
-      /*#__PURE__*/
-      _react["default"].createElement("p", null,
-      /*#__PURE__*/
-      _react["default"].createElement("label", {
-        htmlFor: "paused"
-      },
-      /*#__PURE__*/
-      _react["default"].createElement("input", {
-        type: "checkbox",
-        id: "paused",
-        checked: paused,
-        onChange: this.handlePause
-      }),
-      /*#__PURE__*/
-      _react["default"].createElement("span", null, "Paused"))),
-      /*#__PURE__*/
-      _react["default"].createElement("h5", null, "Volume"),
-      /*#__PURE__*/
-      _react["default"].createElement("input", {
-        type: "range",
-        value: volume,
-        min: 0,
-        max: 1,
-        step: 0.01,
-        onChange: this.handleVolume
-      })),
-      /*#__PURE__*/
-      _react["default"].createElement("div", {
-        className: "col s8 center-align"
-      },
-      /*#__PURE__*/
-      _react["default"].createElement(_["default"], {
-        video: video.id,
-        width: 640,
-        height: 480,
-        autoplay: true,
-        volume: volume,
-        paused: paused,
-        onPause: this.handlePlayerPause,
-        onPlay: this.handlePlayerPlay
-      })))
-    );
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      className: "col s4"
+    }, /*#__PURE__*/_react["default"].createElement("h5", null, "Video"), /*#__PURE__*/_react["default"].createElement("div", {
+      className: "collection"
+    }, videos.map(function (choice, index) {
+      return /*#__PURE__*/_react["default"].createElement("a", {
+        href: "#!/video/" + index,
+        className: "collection-item " + (video === choice ? 'active' : ''),
+        onClick: function onClick() {
+          return _this2.selectVideo(index);
+        }
+      }, choice.name);
+    })), /*#__PURE__*/_react["default"].createElement("h5", null, "Paused"), /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement("label", {
+      htmlFor: "paused"
+    }, /*#__PURE__*/_react["default"].createElement("input", {
+      type: "checkbox",
+      id: "paused",
+      checked: paused,
+      onChange: this.handlePause
+    }), /*#__PURE__*/_react["default"].createElement("span", null, "Paused"))), /*#__PURE__*/_react["default"].createElement("h5", null, "Volume"), /*#__PURE__*/_react["default"].createElement("input", {
+      type: "range",
+      value: volume,
+      min: 0,
+      max: 1,
+      step: 0.01,
+      onChange: this.handleVolume
+    })), /*#__PURE__*/_react["default"].createElement("div", {
+      className: "col s8 center-align"
+    }, /*#__PURE__*/_react["default"].createElement(_["default"], {
+      video: video.id,
+      width: 640,
+      height: 480,
+      autoplay: true,
+      volume: volume,
+      paused: paused,
+      onPause: this.handlePlayerPause,
+      onPlay: this.handlePlayerPlay
+    })));
   };
 
   return App;
 }(_react["default"].Component);
 
-_reactDom["default"].render(
-/*#__PURE__*/
-_react["default"].createElement(App, null), document.getElementById('example'));
+_reactDom["default"].render( /*#__PURE__*/_react["default"].createElement(App, null), document.getElementById('example'));
 
 },{"..":1,"react":12,"react-dom":9}],3:[function(require,module,exports){
 /*
