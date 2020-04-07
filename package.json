@@ -30,6 +30,8 @@
   },
   "homepage": "https://github.com/u-wave/react-vimeo#readme",
   "dependencies": {
+    "@types/react": "^16.9.32",
+    "@types/vimeo__player": "^2.9.0",
     "@vimeo/player": "^2.10.0",
     "prop-types": "^15.7.2"
   },
@@ -58,7 +60,8 @@
     "react-dom": "^16.13.0",
     "react-test-renderer": "^16.13.0",
     "rollup": "^2.0.6",
-    "rollup-plugin-babel": "^4.4.0"
+    "rollup-plugin-babel": "^4.4.0",
+    "tsd": "^0.11.0"
   },
   "sideEffects": false
 }
