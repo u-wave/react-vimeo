@@ -8,7 +8,9 @@
     "prepare": "npm run build",
     "build": "rollup -c",
     "lint": "eslint --cache .",
-    "test": "npm run lint && cross-env BABEL_ENV=test mocha",
+    "test": "npm run lint && npm run test:unit && npm run test:types",
+    "test:unit": "cross-env BABEL_ENV=test mocha",
+    "test:types": "tsd",
     "docs": "node tools/generate-docs.js > generated-docs.md",
     "example": "npm install && cd example && npm install"
   },
