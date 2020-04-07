@@ -5,9 +5,22 @@ jobs:
   include:
     - name: Test on stable Node.js
       node_js: stable
+      script: npm run test:unit
     - name: Test on Node.js 12
       node_js: 12
+      script: npm run test:unit
     - name: Test on Node.js 10
       node_js: 10
+      script: npm run test:unit
     - name: Test on Node.js 8
-      node_js: 8
+      node_js: lts/*
+      before_script:
+        - nvm install 8
+        - nvm use 8
+      script: npm run test:unit
+    - name: Test typings
+      node_js: lts/*
+      script: npm run test:types
+    - name: Check linting
+      node_js: lts/*
+      script: npm run lint

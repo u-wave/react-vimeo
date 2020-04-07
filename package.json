@@ -8,7 +8,9 @@
     "prepare": "npm run build",
     "build": "rollup -c",
     "lint": "eslint --cache .",
-    "test": "npm run lint && cross-env BABEL_ENV=test mocha",
+    "test": "npm run lint && npm run test:unit && npm run test:types",
+    "test:unit": "cross-env BABEL_ENV=test mocha",
+    "test:types": "tsd",
     "docs": "node tools/generate-docs.js > generated-docs.md",
     "example": "npm install && cd example && npm install"
   },
@@ -30,6 +32,8 @@
   },
   "homepage": "https://github.com/u-wave/react-vimeo#readme",
   "dependencies": {
+    "@types/react": "^16.9.32",
+    "@types/vimeo__player": "^2.9.0",
     "@vimeo/player": "^2.10.0",
     "prop-types": "^15.7.2"
   },
@@ -58,7 +62,8 @@
     "react-dom": "^16.13.0",
     "react-test-renderer": "^16.13.0",
     "rollup": "^2.0.6",
-    "rollup-plugin-babel": "^4.4.0"
+    "rollup-plugin-babel": "^4.4.0",
+    "tsd": "^0.11.0"
   },
   "sideEffects": false
 }
