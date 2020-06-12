@@ -457,15 +457,7 @@ var _ = _interopRequireDefault(require(".."));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
@@ -482,8 +474,6 @@ var videos = [{
 
 var App = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(App, _React$Component);
-
-  var _super = _createSuper(App);
 
   function App(props) {
     var _this;
@@ -29645,12 +29635,12 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":4,"timers":19}],20:[function(require,module,exports){
 (function (global,setImmediate){
-/*! @vimeo/player v2.10.0 | (c) 2019 Vimeo | MIT License | https://github.com/vimeo/player.js */
+/*! @vimeo/player v2.12.0 | (c) 2020 Vimeo | MIT License | https://github.com/vimeo/player.js */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, (global.Vimeo = global.Vimeo || {}, global.Vimeo.Player = factory()));
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -29773,16 +29763,16 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
     throw new Error('Sorry, the Vimeo Player API is not available in this browser.');
   }
 
-  var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+  var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
   function createCommonjsModule(fn, module) {
   	return module = { exports: {} }, fn(module, module.exports), module.exports;
   }
 
   /*!
-   * weakmap-polyfill v2.0.0 - ECMAScript6 WeakMap polyfill
+   * weakmap-polyfill v2.0.1 - ECMAScript6 WeakMap polyfill
    * https://github.com/polygonplanet/weakmap-polyfill
-   * Copyright (c) 2015-2016 polygon planet <polygon.planet.aqua@gmail.com>
+   * Copyright (c) 2015-2020 Polygon Planet <polygon.planet.aqua@gmail.com>
    * @license MIT
    */
   (function (self) {
@@ -29920,7 +29910,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
     // special form of UMD for polyfilling across evironments
     context[name] = context[name] || definition();
 
-    if (module.exports) {
+    if ( module.exports) {
       module.exports = context[name];
     }
   })("Promise", typeof commonjsGlobal != "undefined" ? commonjsGlobal : commonjsGlobal, function DEF() {
@@ -30555,11 +30545,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
       }
     };
 
-    if (window.addEventListener) {
-      window.addEventListener('message', onMessage, false);
-    } else if (window.attachEvent) {
-      window.attachEvent('onmessage', onMessage);
-    }
+    window.addEventListener('message', onMessage);
   }
 
   /**
@@ -30702,9 +30688,8 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
       if (!isDomElement(element)) {
         throw new TypeError('You must pass either a valid element or a valid id.');
-      }
+      } // Already initialized an embed in this div, so grab the iframe
 
-      var win = element.ownerDocument.defaultView; // Already initialized an embed in this div, so grab the iframe
 
       if (element.nodeName !== 'IFRAME') {
         var iframe = element.querySelector('iframe');
@@ -30724,10 +30709,11 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
         return playerMap.get(element);
       }
 
+      this._window = element.ownerDocument.defaultView;
       this.element = element;
       this.origin = '*';
       var readyPromise = new npo_src(function (resolve, reject) {
-        var onMessage = function onMessage(event) {
+        _this._onMessage = function (event) {
           if (!isVimeoUrl(event.origin) || _this.element.contentWindow !== event.source) {
             return;
           }
@@ -30760,11 +30746,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
           processData(_this, data);
         };
 
-        if (win.addEventListener) {
-          win.addEventListener('message', onMessage, false);
-        } else if (win.attachEvent) {
-          win.attachEvent('onmessage', onMessage);
-        }
+        _this._window.addEventListener('message', _this._onMessage);
 
         if (_this.element.nodeName !== 'IFRAME') {
           var params = getOEmbedParameters(element, options);
@@ -31141,6 +31123,36 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
         return this.callMethod('play');
       }
       /**
+       * Request that the player enters fullscreen.
+       * @return {Promise}
+       */
+
+    }, {
+      key: "requestFullscreen",
+      value: function requestFullscreen() {
+        return this.callMethod('requestFullscreen');
+      }
+      /**
+       * Request that the player exits fullscreen.
+       * @return {Promise}
+       */
+
+    }, {
+      key: "exitFullscreen",
+      value: function exitFullscreen() {
+        return this.callMethod('exitFullscreen');
+      }
+      /**
+       * Returns true if the player is currently fullscreen.
+       * @return {Promise}
+       */
+
+    }, {
+      key: "getFullscreen",
+      value: function getFullscreen() {
+        return this.get('fullscreen');
+      }
+      /**
        * A promise to unload the video.
        *
        * @promise UnloadPromise
@@ -31185,6 +31197,8 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
           if (_this5.element && _this5.element.nodeName === 'IFRAME' && _this5.element.parentNode) {
             _this5.element.parentNode.removeChild(_this5.element);
           }
+
+          _this5._window.removeEventListener('message', _this5._onMessage);
 
           resolve();
         });
@@ -31252,6 +31266,51 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
       key: "getBuffered",
       value: function getBuffered() {
         return this.get('buffered');
+      }
+      /**
+       * A representation of a chapter.
+       *
+       * @typedef {Object} VimeoChapter
+       * @property {number} startTime The start time of the chapter.
+       * @property {object} title The title of the chapter.
+       * @property {number} index The place in the order of Chapters. Starts at 1.
+       */
+
+      /**
+       * A promise to get chapters for the video.
+       *
+       * @promise GetChaptersPromise
+       * @fulfill {VimeoChapter[]} The chapters for the video.
+       */
+
+      /**
+       * Get an array of all the chapters for the video.
+       *
+       * @return {GetChaptersPromise}
+       */
+
+    }, {
+      key: "getChapters",
+      value: function getChapters() {
+        return this.get('chapters');
+      }
+      /**
+       * A promise to get the currently active chapter.
+       *
+       * @promise GetCurrentChaptersPromise
+       * @fulfill {VimeoChapter|undefined} The current chapter for the video.
+       */
+
+      /**
+       * Get the currently active chapter for the video.
+       *
+       * @return {GetCurrentChaptersPromise}
+       */
+
+    }, {
+      key: "getCurrentChapter",
+      value: function getCurrentChapter() {
+        return this.get('currentChapter');
       }
       /**
        * A promise to get the color of the player.
@@ -31786,7 +31845,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
   return Player;
 
-}));
+})));
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
