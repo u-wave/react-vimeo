@@ -45,6 +45,7 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "@babel/register": "^7.8.6",
+    "@rollup/plugin-babel": "^5.0.3",
     "cross-env": "^7.0.2",
     "doctrine": "^3.0.0",
     "eslint": "7.2.0",
@@ -62,7 +63,6 @@
     "react-dom": "^16.13.0",
     "react-test-renderer": "^16.13.0",
     "rollup": "^2.0.6",
-    "rollup-plugin-babel": "^4.4.0",
     "tsd": "^0.11.0"
   },
   "sideEffects": false
