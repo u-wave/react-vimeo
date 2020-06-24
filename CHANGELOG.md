@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.0
+ * Add typescript typings. (#103)
+
 ## 0.8.3
  * Set `sideEffects: false` in package.json.
  * Add `style` pass-through property to set CSS properties on the container element. (@Authchirion in #100)
