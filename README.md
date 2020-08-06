@@ -24,15 +24,14 @@ import Vimeo from '@u-wave/react-vimeo';
 ```
 
 ## Props
-
 | Name | Type | Default | Description |
 |:-----|:-----|:-----|:-----|
-| video | number / string |  | A Vimeo video ID or URL. |
+| video | number, string |  | A Vimeo video ID or URL. |
 | id | string |  | DOM ID for the player element. |
 | className | string |  | CSS className for the player element. |
 | style | object |  | Inline style for container element. |
-| width | number / string |  | Width of the player element. |
-| height | number / string |  | Height of the player element. |
+| width | number, string |  | Width of the player element. |
+| height | number, string |  | Height of the player element. |
 | paused | bool |  | Pause the video. |
 | volume | number |  | The playback volume as a number between 0 and 1. |
 | start | number |  | The time in seconds at which to start playing the video. |
@@ -60,6 +59,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | onCuePoint | function |  | Triggered when the current time hits a registered cue point. |
 | onVolumeChange | function |  | Triggered when the volume in the player changes. Some devices do not support setting the volume of the video independently from the system volume, so this event will never fire on those devices. |
 | onLoaded | function |  | Triggered when a new video is loaded in the player. |
+
 
 ## Related
 
