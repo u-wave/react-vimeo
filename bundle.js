@@ -29635,7 +29635,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":4,"timers":19}],20:[function(require,module,exports){
 (function (global,setImmediate){
-/*! @vimeo/player v2.12.0 | (c) 2020 Vimeo | MIT License | https://github.com/vimeo/player.js */
+/*! @vimeo/player v2.12.2 | (c) 2020 Vimeo | MIT License | https://github.com/vimeo/player.js */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -30650,8 +30650,123 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
     });
   }
 
+  /* MIT License
+
+  Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  Terms */
+  function initializeScreenfull() {
+    var fn = function () {
+      var val;
+      var fnMap = [['requestFullscreen', 'exitFullscreen', 'fullscreenElement', 'fullscreenEnabled', 'fullscreenchange', 'fullscreenerror'], // New WebKit
+      ['webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitFullscreenElement', 'webkitFullscreenEnabled', 'webkitfullscreenchange', 'webkitfullscreenerror'], // Old WebKit
+      ['webkitRequestFullScreen', 'webkitCancelFullScreen', 'webkitCurrentFullScreenElement', 'webkitCancelFullScreen', 'webkitfullscreenchange', 'webkitfullscreenerror'], ['mozRequestFullScreen', 'mozCancelFullScreen', 'mozFullScreenElement', 'mozFullScreenEnabled', 'mozfullscreenchange', 'mozfullscreenerror'], ['msRequestFullscreen', 'msExitFullscreen', 'msFullscreenElement', 'msFullscreenEnabled', 'MSFullscreenChange', 'MSFullscreenError']];
+      var i = 0;
+      var l = fnMap.length;
+      var ret = {};
+
+      for (; i < l; i++) {
+        val = fnMap[i];
+
+        if (val && val[1] in document) {
+          for (i = 0; i < val.length; i++) {
+            ret[fnMap[0][i]] = val[i];
+          }
+
+          return ret;
+        }
+      }
+
+      return false;
+    }();
+
+    var eventNameMap = {
+      fullscreenchange: fn.fullscreenchange,
+      fullscreenerror: fn.fullscreenerror
+    };
+    var screenfull = {
+      request: function request(element) {
+        return new Promise(function (resolve, reject) {
+          var onFullScreenEntered = function onFullScreenEntered() {
+            screenfull.off('fullscreenchange', onFullScreenEntered);
+            resolve();
+          };
+
+          screenfull.on('fullscreenchange', onFullScreenEntered);
+          element = element || document.documentElement;
+          var returnPromise = element[fn.requestFullscreen]();
+
+          if (returnPromise instanceof Promise) {
+            returnPromise.then(onFullScreenEntered).catch(reject);
+          }
+        });
+      },
+      exit: function exit() {
+        return new Promise(function (resolve, reject) {
+          if (!screenfull.isFullscreen) {
+            resolve();
+            return;
+          }
+
+          var onFullScreenExit = function onFullScreenExit() {
+            screenfull.off('fullscreenchange', onFullScreenExit);
+            resolve();
+          };
+
+          screenfull.on('fullscreenchange', onFullScreenExit);
+          var returnPromise = document[fn.exitFullscreen]();
+
+          if (returnPromise instanceof Promise) {
+            returnPromise.then(onFullScreenExit).catch(reject);
+          }
+        });
+      },
+      on: function on(event, callback) {
+        var eventName = eventNameMap[event];
+
+        if (eventName) {
+          document.addEventListener(eventName, callback);
+        }
+      },
+      off: function off(event, callback) {
+        var eventName = eventNameMap[event];
+
+        if (eventName) {
+          document.removeEventListener(eventName, callback);
+        }
+      }
+    };
+    Object.defineProperties(screenfull, {
+      isFullscreen: {
+        get: function get() {
+          return Boolean(document[fn.fullscreenElement]);
+        }
+      },
+      element: {
+        enumerable: true,
+        get: function get() {
+          return document[fn.fullscreenElement];
+        }
+      },
+      isEnabled: {
+        enumerable: true,
+        get: function get() {
+          // Coerce to boolean in case of old WebKit
+          return Boolean(document[fn.fullscreenEnabled]);
+        }
+      }
+    });
+    return screenfull;
+  }
+
   var playerMap = new WeakMap();
   var readyMap = new WeakMap();
+  var screenfull = {};
 
   var Player =
   /*#__PURE__*/
@@ -30770,6 +30885,25 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
       if (this.element.nodeName === 'IFRAME') {
         postMessage(this, 'ping');
+      }
+
+      if (screenfull.isEnabled) {
+        var exitFullscreen = function exitFullscreen() {
+          return screenfull.exit();
+        };
+
+        screenfull.on('fullscreenchange', function () {
+          if (screenfull.isFullscreen) {
+            storeCallback(_this, 'event:exitFullscreen', exitFullscreen);
+          } else {
+            removeCallback(_this, 'event:exitFullscreen', exitFullscreen);
+          } // eslint-disable-next-line
+
+
+          _this.ready().then(function () {
+            postMessage(_this, 'fullscreenchange', screenfull.isFullscreen);
+          });
+        });
       }
 
       return this;
@@ -31130,6 +31264,10 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
     }, {
       key: "requestFullscreen",
       value: function requestFullscreen() {
+        if (screenfull.isEnabled) {
+          return screenfull.request(this.element);
+        }
+
         return this.callMethod('requestFullscreen');
       }
       /**
@@ -31140,6 +31278,10 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
     }, {
       key: "exitFullscreen",
       value: function exitFullscreen() {
+        if (screenfull.isEnabled) {
+          return screenfull.exit();
+        }
+
         return this.callMethod('exitFullscreen');
       }
       /**
@@ -31150,6 +31292,10 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
     }, {
       key: "getFullscreen",
       value: function getFullscreen() {
+        if (screenfull.isEnabled) {
+          return npo_src.resolve(screenfull.isFullscreen);
+        }
+
         return this.get('fullscreen');
       }
       /**
@@ -31839,6 +31985,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 
   if (!isNode) {
+    screenfull = initializeScreenfull();
     initializeEmbeds();
     resizeEmbeds();
   }
