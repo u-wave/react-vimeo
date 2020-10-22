@@ -18,3 +18,8 @@ jobs:
     - name: Check linting
       node_js: lts/*
       script: npm run lint
+    - name: Test with React 16
+      node_js: 12
+      before_script:
+        npm install react@16 react-dom@16 react-test-renderer@16
+      script: npm run test:unit
