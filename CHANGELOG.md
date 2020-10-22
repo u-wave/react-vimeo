@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.1
+ * Add React 17 to allowed peerDependency range. (#114)
+
 ## 0.9.0
  * Add typescript typings. (#103)
 
