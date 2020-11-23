@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/u-wave/react-vimeo#readme",
   "dependencies": {
-    "@types/react": "^16.9.32",
+    "@types/react": "^17.0.0",
     "@types/vimeo__player": "^2.9.0",
     "@vimeo/player": "^2.10.0",
     "prop-types": "^15.7.2"
