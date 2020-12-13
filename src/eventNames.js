@@ -9,6 +9,7 @@ export default {
   cuechange: 'onCueChange',
   cuepoint: 'onCuePoint',
   volumechange: 'onVolumeChange',
+  playbackratechange: 'onPlaybackRateChange',
   error: 'onError',
   loaded: 'onLoaded',
 };

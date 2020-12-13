@@ -120,6 +120,13 @@ export type VolumeEvent = {
   volume: number
 }
 
+export type PlaybackRateEvent = {
+  /**
+   * The new playback rate.
+   */
+  playbackRate: number
+}
+
 export type LoadEvent = {
   /**
    * The ID of the new video.
@@ -284,6 +291,10 @@ export interface VimeoProps {
    */
   onVolumeChange?: (event: VolumeEvent) => void
   /**
+   * Triggered when the playback rate in the player changes.
+   */
+  onPlaybackRateChange?: (event: PlaybackRateEvent) => void
+  /**
    * Triggered when a new video is loaded in the player.
    */
   onLoaded?: (event: LoadEvent) => void
@@ -292,4 +303,4 @@ export interface VimeoProps {
 /**
  * Vimeo player component for React.
  */
-export default class Vimeo extends React.Component<VimeoProps> {}
+export default class Vimeo extends React.Component<VimeoProps> { }

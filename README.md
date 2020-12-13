@@ -58,6 +58,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | onCueChange | function |  | Triggered when the active cue for the current text track changes. It also fires when the active text track changes. There may be multiple cues active. |
 | onCuePoint | function |  | Triggered when the current time hits a registered cue point. |
 | onVolumeChange | function |  | Triggered when the volume in the player changes. Some devices do not support setting the volume of the video independently from the system volume, so this event will never fire on those devices. |
+| onPlaybackRateChange | function |  | Triggered when the playback rate changws. |
 | onLoaded | function |  | Triggered when a new video is loaded in the player. |
 
 
