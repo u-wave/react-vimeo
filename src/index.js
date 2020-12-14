@@ -341,6 +341,10 @@ if (process.env.NODE_ENV !== 'production') {
      */
     onVolumeChange: PropTypes.func,
     /**
+     * Triggered when the playback rate changes.
+     */
+    onPlaybackRateChange: PropTypes.func,
+    /**
      * Triggered when a new video is loaded in the player.
      */
     onLoaded: PropTypes.func,

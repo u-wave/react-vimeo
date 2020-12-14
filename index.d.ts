@@ -120,6 +120,13 @@ export type VolumeEvent = {
   volume: number
 }
 
+export type PlaybackRateEvent = {
+  /**
+   * The new playback rate.
+   */
+  playbackRate: number
+}
+
 export type LoadEvent = {
   /**
    * The ID of the new video.
@@ -283,6 +290,10 @@ export interface VimeoProps {
    * volume, so this event will never fire on those devices.
    */
   onVolumeChange?: (event: VolumeEvent) => void
+  /**
+   * Triggered when the playback rate in the player changes.
+   */
+  onPlaybackRateChange?: (event: PlaybackRateEvent) => void
   /**
    * Triggered when a new video is loaded in the player.
    */
