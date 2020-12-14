@@ -25,10 +25,6 @@ class App extends React.Component {
     this.handleVolume = this.handleVolume.bind(this);
   }
 
-  selectVideo(index) {
-    this.setState({ videoIndex: index });
-  }
-
   handlePause(event) {
     this.setState({
       paused: event.target.checked,
@@ -47,6 +43,10 @@ class App extends React.Component {
     this.setState({
       volume: parseFloat(event.target.value),
     });
+  }
+
+  selectVideo(index) {
+    this.setState({ videoIndex: index });
   }
 
   render() {
