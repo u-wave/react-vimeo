@@ -303,4 +303,4 @@ export interface VimeoProps {
 /**
  * Vimeo player component for React.
  */
-export default class Vimeo extends React.Component<VimeoProps> { }
+export default class Vimeo extends React.Component<VimeoProps> {}
