@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.2
+ * Add prop for the `onPlaybackRateChange` event. (@houmark in #120)
+
 ## 0.9.1
  * Add React 17 to allowed peerDependency range. (#114)
 
