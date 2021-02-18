@@ -45,6 +45,7 @@ class Vimeo extends React.Component {
       muted: this.props.muted,
       background: this.props.background,
       responsive: this.props.responsive,
+      dnt: this.props.dnt,
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -243,6 +244,11 @@ if (process.env.NODE_ENV !== 'production') {
      */
     color: PropTypes.string,
 
+    /**
+     * Blocks the player from tracking any session data, including all cookies and analytics.
+     */
+    dnt: PropTypes.bool,
+
     // Player controls
     /**
      * Hide all elements in the player (play bar, sharing buttons, etc).
@@ -364,6 +370,7 @@ Vimeo.defaultProps = {
   muted: false,
   background: false,
   responsive: false,
+  dnt: false,
 };
 
 export default Vimeo;
