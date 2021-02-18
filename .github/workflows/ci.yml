@@ -1,0 +1,56 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Code style
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: npm install
+      - name: Check code style
+        run: npm run lint
+
+  types:
+    name: Test types
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: npm install
+      - name: Check types
+        run: npm run test:types
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+        react-version: ['16', '17']
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Install Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: Install dependencies
+        run: npm install
+      - name: Install React ${{matrix.react-version}}
+        if: matrix.react-version != '17'
+        run: npm install react@${{matrix.react-version}} react-dom@${{matrix.react-version}} react-test-renderer@${{matrix.react-version}}
+      - name: Run tests
+        run: npm run test:unit
