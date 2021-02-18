@@ -27,7 +27,17 @@ var Player__default = /*#__PURE__*/_interopDefaultLegacy(Player);
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
+
+  _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
 }
 
 function _assertThisInitialized(self) {
@@ -105,7 +115,8 @@ var Vimeo = /*#__PURE__*/function (_React$Component) {
       title: this.props.showTitle,
       muted: this.props.muted,
       background: this.props.background,
-      responsive: this.props.responsive
+      responsive: this.props.responsive,
+      dnt: this.props.dnt
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -321,6 +332,11 @@ if (process.env.NODE_ENV !== 'production') {
      * embed settings of the video. _(Ex: "ef2f9f")_
      */
     color: PropTypes__default['default'].string,
+
+    /**
+     * Blocks the player from tracking any session data, including all cookies and analytics.
+     */
+    dnt: PropTypes__default['default'].bool,
     // Player controls
 
     /**
@@ -455,7 +471,8 @@ Vimeo.defaultProps = {
   showTitle: true,
   muted: false,
   background: false,
-  responsive: false
+  responsive: false,
+  dnt: false
 };
 exports.default = Vimeo;
 
@@ -473,7 +490,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var videos = [{
   id: 115783408,
@@ -29649,7 +29668,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":4,"timers":19}],20:[function(require,module,exports){
 (function (global,setImmediate){(function (){
-/*! @vimeo/player v2.14.1 | (c) 2020 Vimeo | MIT License | https://github.com/vimeo/player.js */
+/*! @vimeo/player v2.15.0 | (c) 2021 Vimeo | MIT License | https://github.com/vimeo/player.js */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -31309,6 +31328,36 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
         }
 
         return this.get('fullscreen');
+      }
+      /**
+       * Request that the player enters picture-in-picture.
+       * @return {Promise}
+       */
+
+    }, {
+      key: "requestPictureInPicture",
+      value: function requestPictureInPicture() {
+        return this.callMethod('requestPictureInPicture');
+      }
+      /**
+       * Request that the player exits picture-in-picture.
+       * @return {Promise}
+       */
+
+    }, {
+      key: "exitPictureInPicture",
+      value: function exitPictureInPicture() {
+        return this.callMethod('exitPictureInPicture');
+      }
+      /**
+       * Returns true if the player is currently picture-in-picture.
+       * @return {Promise}
+       */
+
+    }, {
+      key: "getPictureInPicture",
+      value: function getPictureInPicture() {
+        return this.get('pictureInPicture');
       }
       /**
        * A promise to unload the video.
