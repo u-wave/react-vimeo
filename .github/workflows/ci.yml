@@ -51,6 +51,6 @@ jobs:
         run: npm install
       - name: Install React ${{matrix.react-version}}
         if: matrix.react-version != '17'
-        run: npm install react@${{matrix.react-version} react-dom@${{matrix.react-version}}} react-test-renderer@${{matrix.react-version}}
+        run: npm install react@${{matrix.react-version}} react-dom@${{matrix.react-version}} react-test-renderer@${{matrix.react-version}}
       - name: Run tests
         run: npm run test:unit
