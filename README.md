@@ -38,6 +38,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | autopause | bool | true | Pause this video automatically when another one plays. |
 | autoplay | bool | false | Automatically start playback of the video. Note that this won’t work on some devices. |
 | showByline | bool | true | Show the byline on the video. |
+| currentTime | number | | The time in seconds at which to seek/jump the video to. |
 | color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. _(Ex: "ef2f9f")_ |
 | dnt | bool | false | Blocks the player from tracking any session data, including all cookies and analytics |
 | controls | bool | true | Hide all elements in the player (play bar, sharing buttons, etc). |

@@ -71,6 +71,9 @@ class Vimeo extends React.Component {
         case 'volume':
           player.setVolume(value);
           break;
+        case "currentTime":
+          player.setCurrentTime(value);
+          break;
         case 'paused':
           player.getPaused().then((paused) => {
             if (value && !paused) {
@@ -237,6 +240,11 @@ if (process.env.NODE_ENV !== 'production') {
      * Show the byline on the video.
      */
     showByline: PropTypes.bool,
+
+    /**
+     * The time in seconds at which to seek/jump the video to.
+     */
+    currentTime: PropTypes.number,
 
     /**
      * Specify the color of the video controls. Colors may be overridden by the

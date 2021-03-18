@@ -192,6 +192,11 @@ export interface VimeoProps {
   showByline?: boolean
 
   /**
+   * The time in seconds at which to seek/jump the video to.
+   */
+  currentTime?: number
+
+  /**
    * Specify the color of the video controls. Colors may be overridden by the
    * embed settings of the video. _(Ex: "ef2f9f")_
    */
