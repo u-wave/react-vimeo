@@ -116,7 +116,8 @@ var Vimeo = /*#__PURE__*/function (_React$Component) {
       muted: this.props.muted,
       background: this.props.background,
       responsive: this.props.responsive,
-      dnt: this.props.dnt
+      dnt: this.props.dnt,
+      speed: this.props.speed
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -373,6 +374,11 @@ if (process.env.NODE_ENV !== 'production') {
      * Enable responsive mode and resize according to parent element (experimental)
      */
     responsive: PropTypes__default['default'].bool,
+
+    /**
+     * Enable playback rate controls (requires Vimeo PRO / Business account)
+     */
+    speed: PropTypes__default['default'].bool,
     // Events
 
     /* eslint-disable react/no-unused-prop-types */
@@ -472,7 +478,8 @@ Vimeo.defaultProps = {
   muted: false,
   background: false,
   responsive: false,
-  dnt: false
+  dnt: false,
+  speed: false
 };
 exports.default = Vimeo;
 
@@ -33076,7 +33083,7 @@ if (process.env.NODE_ENV === 'production') {
 }).call(this)}).call(this,require('_process'))
 },{"./cjs/react-is.development.js":27,"./cjs/react-is.production.min.js":28,"_process":4}],30:[function(require,module,exports){
 (function (process){(function (){
-/** @license React v17.0.1
+/** @license React v17.0.2
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -33094,7 +33101,7 @@ if (process.env.NODE_ENV !== "production") {
 var _assign = require('object-assign');
 
 // TODO: this is special because it gets imported during build.
-var ReactVersion = '17.0.1';
+var ReactVersion = '17.0.2';
 
 // ATTENTION
 // When adding new symbols to this file,
@@ -35412,7 +35419,7 @@ exports.version = ReactVersion;
 
 }).call(this)}).call(this,require('_process'))
 },{"_process":4,"object-assign":21}],31:[function(require,module,exports){
-/** @license React v17.0.1
+/** @license React v17.0.2
  * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -35434,7 +35441,7 @@ exports.Children={map:P,forEach:function(a,b,c){P(a,function(){b.apply(this,argu
 exports.cloneElement=function(a,b,c){if(null===a||void 0===a)throw Error(z(267,a));var e=l({},a.props),d=a.key,k=a.ref,h=a._owner;if(null!=b){void 0!==b.ref&&(k=b.ref,h=G.current);void 0!==b.key&&(d=""+b.key);if(a.type&&a.type.defaultProps)var g=a.type.defaultProps;for(f in b)H.call(b,f)&&!I.hasOwnProperty(f)&&(e[f]=void 0===b[f]&&void 0!==g?g[f]:b[f])}var f=arguments.length-2;if(1===f)e.children=c;else if(1<f){g=Array(f);for(var m=0;m<f;m++)g[m]=arguments[m+2];e.children=g}return{$$typeof:n,type:a.type,
 key:d,ref:k,props:e,_owner:h}};exports.createContext=function(a,b){void 0===b&&(b=null);a={$$typeof:r,_calculateChangedBits:b,_currentValue:a,_currentValue2:a,_threadCount:0,Provider:null,Consumer:null};a.Provider={$$typeof:q,_context:a};return a.Consumer=a};exports.createElement=J;exports.createFactory=function(a){var b=J.bind(null,a);b.type=a;return b};exports.createRef=function(){return{current:null}};exports.forwardRef=function(a){return{$$typeof:t,render:a}};exports.isValidElement=L;
 exports.lazy=function(a){return{$$typeof:v,_payload:{_status:-1,_result:a},_init:Q}};exports.memo=function(a,b){return{$$typeof:u,type:a,compare:void 0===b?null:b}};exports.useCallback=function(a,b){return S().useCallback(a,b)};exports.useContext=function(a,b){return S().useContext(a,b)};exports.useDebugValue=function(){};exports.useEffect=function(a,b){return S().useEffect(a,b)};exports.useImperativeHandle=function(a,b,c){return S().useImperativeHandle(a,b,c)};
-exports.useLayoutEffect=function(a,b){return S().useLayoutEffect(a,b)};exports.useMemo=function(a,b){return S().useMemo(a,b)};exports.useReducer=function(a,b,c){return S().useReducer(a,b,c)};exports.useRef=function(a){return S().useRef(a)};exports.useState=function(a){return S().useState(a)};exports.version="17.0.1";
+exports.useLayoutEffect=function(a,b){return S().useLayoutEffect(a,b)};exports.useMemo=function(a,b){return S().useMemo(a,b)};exports.useReducer=function(a,b,c){return S().useReducer(a,b,c)};exports.useRef=function(a){return S().useRef(a)};exports.useState=function(a){return S().useState(a)};exports.version="17.0.2";
 
 },{"object-assign":21}],32:[function(require,module,exports){
 arguments[4][12][0].apply(exports,arguments)
