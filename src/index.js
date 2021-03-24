@@ -377,7 +377,7 @@ Vimeo.defaultProps = {
   background: false,
   responsive: false,
   dnt: false,
-  speed: false
+  speed: false,
 };
 
 export default Vimeo;
