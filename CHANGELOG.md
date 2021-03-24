@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.4
+ * Add prop for the `speed` player option. (@warrenmcquinn in #128)
+
+   This option enables speed controls so the user can select speeds in the Vimeo frame UI,
+   it does not itself control the playback rate.
+
 ## 0.9.3
  * Add prop for the `dnt` player option. (@k-p-jones in #125)
 
