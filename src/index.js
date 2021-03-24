@@ -46,6 +46,7 @@ class Vimeo extends React.Component {
       background: this.props.background,
       responsive: this.props.responsive,
       dnt: this.props.dnt,
+      speed: this.props.speed,
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -285,6 +286,11 @@ if (process.env.NODE_ENV !== 'production') {
      */
     responsive: PropTypes.bool,
 
+    /**
+     * Enable playback rate controls (requires Vimeo PRO / Business account)
+     */
+    speed: PropTypes.bool,
+
     // Events
     /* eslint-disable react/no-unused-prop-types */
 
@@ -371,6 +377,7 @@ Vimeo.defaultProps = {
   background: false,
   responsive: false,
   dnt: false,
+  speed: false
 };
 
 export default Vimeo;
