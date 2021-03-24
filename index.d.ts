@@ -233,6 +233,11 @@ export interface VimeoProps {
   responsive?: boolean
 
   /**
+   * Enable playback rate controls (requires Vimeo PRO / Business account)
+   */
+  speed?: boolean
+
+  /**
    * Sent when the Vimeo player API has loaded.
    * Receives the Vimeo player object in the first parameter.
    */
