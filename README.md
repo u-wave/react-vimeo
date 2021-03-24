@@ -47,6 +47,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | muted | bool | false | Starts in a muted state to help with autoplay |
 | background | bool | false | Starts in a background state with no controls to help with autoplay |
 | responsive | bool | false | Enable responsive mode and resize according to parent element (experimental) |
+| speed | bool | false | Enable playback rate controls (requires Vimeo PRO / Business account) |
 | onReady | function |  | Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter. |
 | onError | function |  | Sent when the player triggers an error. |
 | onPlay | function |  | Triggered when the video plays. |
