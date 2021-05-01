@@ -13,6 +13,13 @@ export default function createVimeo({ shouldFail = false } = {}) {
         ? Promise.reject(new Error('artificial failure'))
         : Promise.resolve();
     },
+    setTextTrack: createPromiseSpy(),
+    setTransparent: createPromiseSpy(),
+    setQuality: createPromiseSpy(),
+    setPip: createPromiseSpy(),
+    setPlaysInline: createPromiseSpy(),
+    setMaxHeight: createPromiseSpy(),
+    setMaxWidth: createPromiseSpy(),
     setVolume: createPromiseSpy(),
     setCurrentTime: createPromiseSpy(),
     setAutopause: createPromiseSpy(),

@@ -47,6 +47,16 @@ class Vimeo extends React.Component {
       responsive: this.props.responsive,
       dnt: this.props.dnt,
       speed: this.props.speed,
+
+      //latest embed attribs
+      texttrack: this.props.textTrack,
+      transparent: this.props.transparent,
+      quality: this.props.quality,
+      pip: this.props.pip,
+      playsinline: this.props.playsInline,
+      maxheight: this.props.maxHeight,
+      maxwidth: this.props.maxWidth
+      
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -60,6 +70,29 @@ class Vimeo extends React.Component {
       // eslint-disable-next-line react/destructuring-assignment
       const value = this.props[name];
       switch (name) {
+
+        case 'texttrack': 
+          player.setMaxWidth(value);
+          break;
+        case 'transparent': 
+          player.setTransparent(value);
+          break;
+        case 'quality': 
+          player.setQuality(value);
+          break;
+        case 'pip': 
+          player.setPip(value);
+          break;
+        case 'playsinline': 
+          player.setPlaysInline(value);
+          break;
+        case 'maxheight': 
+          player.setMaxHeight(value);
+          break;
+        case 'maxwidth': 
+          player.setMaxWidth(value);
+          break;
+
         case 'autopause':
           player.setAutopause(value);
           break;
@@ -291,6 +324,41 @@ if (process.env.NODE_ENV !== 'production') {
      */
     speed: PropTypes.bool,
 
+    /**
+     * Turn captions/subtitles on for a specific language by default.
+     */
+    textTrack: PropTypes.string,
+
+    /**
+     * The responsive player and transparent background
+     */
+    transparent: PropTypes.boolean,
+
+    /**
+     * Vimeo Plus, PRO, and Business members can default an embedded video to a specific quality on desktop. Possible values: 4K, 2K, 1080p, 720p, 540p, 360p and 240p
+     */
+    quality: PropTypes.string,
+
+    /**
+     * Show the picture-in-picture button in the controlbar and enable the picture-in-picture API.
+     */
+    pip: PropTypes.boolean,
+
+    /**
+     * Play video inline on mobile devices, to automatically go fullscreen on playback set this parameter to false.
+     */
+    playsInline: PropTypes.boolean,
+    
+    /**
+     * Same as height, but video will not exceed the native size of the video.
+     */
+    maxHeight: PropTypes.number | PropTypes.string,
+
+    /**
+     * Same as width, but video will not exceed the native size of the video.
+     */
+    maxWidth: PropTypes.number | PropTypes.string,
+
     // Events
     /* eslint-disable react/no-unused-prop-types */
 
@@ -378,6 +446,14 @@ Vimeo.defaultProps = {
   responsive: false,
   dnt: false,
   speed: false,
+
+  textTrack: '',
+  transparent: true,
+  quality: '1080p',
+  pip: false,
+  playsInline: true,
+  maxHeight: '',
+  maxWidth: ''
 };
 
 export default Vimeo;
