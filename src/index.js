@@ -72,7 +72,7 @@ class Vimeo extends React.Component {
       switch (name) {
 
         case 'texttrack': 
-          player.setMaxWidth(value);
+          player.setTextTrack(value);
           break;
         case 'transparent': 
           player.setTransparent(value);
@@ -332,7 +332,7 @@ if (process.env.NODE_ENV !== 'production') {
     /**
      * The responsive player and transparent background
      */
-    transparent: PropTypes.boolean,
+    transparent: PropTypes.bool,
 
     /**
      * Vimeo Plus, PRO, and Business members can default an embedded video to a specific quality on desktop. Possible values: 4K, 2K, 1080p, 720p, 540p, 360p and 240p
@@ -342,22 +342,28 @@ if (process.env.NODE_ENV !== 'production') {
     /**
      * Show the picture-in-picture button in the controlbar and enable the picture-in-picture API.
      */
-    pip: PropTypes.boolean,
+    pip: PropTypes.bool,
 
     /**
      * Play video inline on mobile devices, to automatically go fullscreen on playback set this parameter to false.
      */
-    playsInline: PropTypes.boolean,
+    playsInline: PropTypes.bool,
     
     /**
      * Same as height, but video will not exceed the native size of the video.
      */
-    maxHeight: PropTypes.number | PropTypes.string,
+    maxHeight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * Same as width, but video will not exceed the native size of the video.
      */
-    maxWidth: PropTypes.number | PropTypes.string,
+    maxWidth: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     // Events
     /* eslint-disable react/no-unused-prop-types */
