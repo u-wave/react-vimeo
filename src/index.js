@@ -47,16 +47,14 @@ class Vimeo extends React.Component {
       responsive: this.props.responsive,
       dnt: this.props.dnt,
       speed: this.props.speed,
-
-      //latest embed attribs
+      // latest embed attribs
       texttrack: this.props.textTrack,
       transparent: this.props.transparent,
       quality: this.props.quality,
       pip: this.props.pip,
       playsinline: this.props.playsInline,
       maxheight: this.props.maxHeight,
-      maxwidth: this.props.maxWidth
-      
+      maxwidth: this.props.maxWidth,
     };
     /* eslint-enable react/destructuring-assignment */
   }
@@ -70,29 +68,27 @@ class Vimeo extends React.Component {
       // eslint-disable-next-line react/destructuring-assignment
       const value = this.props[name];
       switch (name) {
-
-        case 'texttrack': 
+        case 'texttrack':
           player.setTextTrack(value);
           break;
-        case 'transparent': 
+        case 'transparent':
           player.setTransparent(value);
           break;
-        case 'quality': 
+        case 'quality':
           player.setQuality(value);
           break;
-        case 'pip': 
+        case 'pip':
           player.setPip(value);
           break;
-        case 'playsinline': 
+        case 'playsinline':
           player.setPlaysInline(value);
           break;
-        case 'maxheight': 
+        case 'maxheight':
           player.setMaxHeight(value);
           break;
-        case 'maxwidth': 
+        case 'maxwidth':
           player.setMaxWidth(value);
           break;
-
         case 'autopause':
           player.setAutopause(value);
           break;
@@ -335,7 +331,8 @@ if (process.env.NODE_ENV !== 'production') {
     transparent: PropTypes.bool,
 
     /**
-     * Vimeo Plus, PRO, and Business members can default an embedded video to a specific quality on desktop. Possible values: 4K, 2K, 1080p, 720p, 540p, 360p and 240p
+     * Vimeo Plus, PRO, and Business members can default an embedded video to a
+     * specific quality on desktop. Possible values: 4K, 2K, 1080p, 720p, 540p, 360p and 240p
      */
     quality: PropTypes.string,
 
@@ -345,10 +342,11 @@ if (process.env.NODE_ENV !== 'production') {
     pip: PropTypes.bool,
 
     /**
-     * Play video inline on mobile devices, to automatically go fullscreen on playback set this parameter to false.
+     * Play video inline on mobile devices, to automatically go fullscreen on playback set
+     * this parameter to false.
      */
     playsInline: PropTypes.bool,
-    
+
     /**
      * Same as height, but video will not exceed the native size of the video.
      */
@@ -459,7 +457,7 @@ Vimeo.defaultProps = {
   pip: false,
   playsInline: true,
   maxHeight: '',
-  maxWidth: ''
+  maxWidth: '',
 };
 
 export default Vimeo;
