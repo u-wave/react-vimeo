@@ -4,6 +4,7 @@
   "description": "Vimeo player component for React.",
   "main": "dist/react-vimeo.js",
   "module": "dist/react-vimeo.es.js",
+  "types": "index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "rollup -c",
@@ -63,7 +64,7 @@
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.1",
     "rollup": "^2.35.0",
-    "tsd": "^0.16.0"
+    "tsd": "^0.17.0"
   },
   "sideEffects": false
 }
