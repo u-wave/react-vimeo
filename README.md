@@ -48,6 +48,13 @@ import Vimeo from '@u-wave/react-vimeo';
 | background | bool | false | Starts in a background state with no controls to help with autoplay |
 | responsive | bool | false | Enable responsive mode and resize according to parent element (experimental) |
 | speed | bool | false | Enable playback rate controls (requires Vimeo PRO / Business account) |
+| textTrack | string |  | Turn captions/subtitles on for a specific language by default |
+| transparent | bool | true | The responsive player and transparent background |
+| quality | string |  | Vimeo Plus, PRO, and Business members can default an embedded video to a specific quality on desktop. Possible values: 4K, 2K, 1080p, 720p, 540p, 360p and 240p |
+| pip | bool | false | Show the picture-in-picture button in the controlbar and enable the picture-in-picture API. |
+| playsInline | bool | false | Play video inline on mobile devices, to automatically go fullscreen on playback set this parameter to false |
+| maxHeight | number, string | false | Same as height, but video will not exceed the native size of the video |
+| maxWidth | number, string | false | Same as width, but video will not exceed the native size of the video |
 | onReady | function |  | Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter. |
 | onError | function |  | Sent when the player triggers an error. |
 | onPlay | function |  | Triggered when the video plays. |

@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.5
+ * Add props for the player option. (@iuriandreazza in #132)
+
+   Added props that matches with the latest version from vimeo player attributes, they are:
+   - `texttrack`,
+   - `transparent`,
+   - `quality`,
+   - `pip`,
+   - `playsinline`,
+   - `maxheight`,
+   - `maxwidth`
+
 ## 0.9.4
  * Add prop for the `speed` player option. (@warrenmcquinn in #128)
 
