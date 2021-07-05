@@ -238,6 +238,11 @@ export interface VimeoProps {
   speed?: boolean
 
   /**
+   * Blocks the player from tracking any session data, including all cookies and analytics
+   */
+  dnt?: boolean
+
+  /**
    * Sent when the Vimeo player API has loaded.
    * Receives the Vimeo player object in the first parameter.
    */
