@@ -271,6 +271,10 @@ export interface VimeoProps {
    * Same as width, but video will not exceed the native size of the video.
    */
   maxWidth?: number | string
+  /**
+   * Blocks the player from tracking any session data, including all cookies and analytics
+   */
+  dnt?: boolean
 
   /**
    * Sent when the Vimeo player API has loaded.

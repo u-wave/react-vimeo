@@ -15,6 +15,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `playsinline`,
    - `maxheight`,
    - `maxwidth`
+   
+ * Add the `dnt` prop to the typescript definitions. (@k-p-jones in #140)
 
 ## 0.9.4
  * Add prop for the `speed` player option. (@warrenmcquinn in #128)
