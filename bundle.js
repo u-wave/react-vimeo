@@ -201,7 +201,7 @@ var Vimeo = /*#__PURE__*/function (_React$Component) {
     var _this$props = this.props,
         start = _this$props.start,
         volume = _this$props.volume;
-    this.player = new Player__default['default'](this.container, this.getInitialOptions());
+    this.player = new Player__default["default"](this.container, this.getInitialOptions());
     Object.keys(eventNames).forEach(function (dmName) {
       var reactName = eventNames[dmName];
 
@@ -251,7 +251,7 @@ var Vimeo = /*#__PURE__*/function (_React$Component) {
         id = _this$props3.id,
         className = _this$props3.className,
         style = _this$props3.style;
-    return /*#__PURE__*/React__default['default'].createElement("div", {
+    return /*#__PURE__*/React__default["default"].createElement("div", {
       id: id,
       className: className,
       style: style,
@@ -260,125 +260,125 @@ var Vimeo = /*#__PURE__*/function (_React$Component) {
   };
 
   return Vimeo;
-}(React__default['default'].Component);
+}(React__default["default"].Component);
 
 if (process.env.NODE_ENV !== 'production') {
   Vimeo.propTypes = {
     /**
      * A Vimeo video ID or URL.
      */
-    video: PropTypes__default['default'].oneOfType([PropTypes__default['default'].number, PropTypes__default['default'].string]),
+    video: PropTypes__default["default"].oneOfType([PropTypes__default["default"].number, PropTypes__default["default"].string]),
 
     /**
      * DOM ID for the player element.
      */
-    id: PropTypes__default['default'].string,
+    id: PropTypes__default["default"].string,
 
     /**
      * CSS className for the player element.
      */
-    className: PropTypes__default['default'].string,
+    className: PropTypes__default["default"].string,
 
     /**
      * Inline style for container element.
      */
-    style: PropTypes__default['default'].object,
+    style: PropTypes__default["default"].object,
     // eslint-disable-line react/forbid-prop-types
 
     /**
      * Width of the player element.
      */
-    width: PropTypes__default['default'].oneOfType([PropTypes__default['default'].number, PropTypes__default['default'].string]),
+    width: PropTypes__default["default"].oneOfType([PropTypes__default["default"].number, PropTypes__default["default"].string]),
 
     /**
      * Height of the player element.
      */
-    height: PropTypes__default['default'].oneOfType([PropTypes__default['default'].number, PropTypes__default['default'].string]),
+    height: PropTypes__default["default"].oneOfType([PropTypes__default["default"].number, PropTypes__default["default"].string]),
 
     /**
      * Pause the video.
      */
-    paused: PropTypes__default['default'].bool,
+    paused: PropTypes__default["default"].bool,
     // eslint-disable-line react/no-unused-prop-types
 
     /**
      * The playback volume as a number between 0 and 1.
      */
-    volume: PropTypes__default['default'].number,
+    volume: PropTypes__default["default"].number,
 
     /**
      * The time in seconds at which to start playing the video.
      */
-    start: PropTypes__default['default'].number,
+    start: PropTypes__default["default"].number,
     // Player parameters
 
     /**
      * Pause this video automatically when another one plays.
      */
-    autopause: PropTypes__default['default'].bool,
+    autopause: PropTypes__default["default"].bool,
 
     /**
      * Automatically start playback of the video. Note that this won’t work on
      * some devices.
      */
-    autoplay: PropTypes__default['default'].bool,
+    autoplay: PropTypes__default["default"].bool,
 
     /**
      * Show the byline on the video.
      */
-    showByline: PropTypes__default['default'].bool,
+    showByline: PropTypes__default["default"].bool,
 
     /**
      * Specify the color of the video controls. Colors may be overridden by the
      * embed settings of the video. _(Ex: "ef2f9f")_
      */
-    color: PropTypes__default['default'].string,
+    color: PropTypes__default["default"].string,
 
     /**
      * Blocks the player from tracking any session data, including all cookies and analytics.
      */
-    dnt: PropTypes__default['default'].bool,
+    dnt: PropTypes__default["default"].bool,
     // Player controls
 
     /**
      * Hide all elements in the player (play bar, sharing buttons, etc).
      */
-    controls: PropTypes__default['default'].bool,
+    controls: PropTypes__default["default"].bool,
 
     /**
      * Play the video again when it reaches the end.
      */
-    loop: PropTypes__default['default'].bool,
+    loop: PropTypes__default["default"].bool,
 
     /**
      * Show the portrait on the video.
      */
-    showPortrait: PropTypes__default['default'].bool,
+    showPortrait: PropTypes__default["default"].bool,
 
     /**
      * Show the title on the video.
      */
-    showTitle: PropTypes__default['default'].bool,
+    showTitle: PropTypes__default["default"].bool,
 
     /**
      * Starts in a muted state to help with autoplay
      */
-    muted: PropTypes__default['default'].bool,
+    muted: PropTypes__default["default"].bool,
 
     /**
      * Starts in a background state with no controls to help with autoplay
      */
-    background: PropTypes__default['default'].bool,
+    background: PropTypes__default["default"].bool,
 
     /**
      * Enable responsive mode and resize according to parent element (experimental)
      */
-    responsive: PropTypes__default['default'].bool,
+    responsive: PropTypes__default["default"].bool,
 
     /**
      * Enable playback rate controls (requires Vimeo PRO / Business account)
      */
-    speed: PropTypes__default['default'].bool,
+    speed: PropTypes__default["default"].bool,
     // Events
 
     /* eslint-disable react/no-unused-prop-types */
@@ -387,81 +387,81 @@ if (process.env.NODE_ENV !== 'production') {
      * Sent when the Vimeo player API has loaded.
      * Receives the Vimeo player object in the first parameter.
      */
-    onReady: PropTypes__default['default'].func,
+    onReady: PropTypes__default["default"].func,
 
     /**
      * Sent when the player triggers an error.
      */
-    onError: PropTypes__default['default'].func,
+    onError: PropTypes__default["default"].func,
 
     /**
      * Triggered when the video plays.
      */
-    onPlay: PropTypes__default['default'].func,
+    onPlay: PropTypes__default["default"].func,
 
     /**
      * Triggered when the video pauses.
      */
-    onPause: PropTypes__default['default'].func,
+    onPause: PropTypes__default["default"].func,
 
     /**
      * Triggered any time the video playback reaches the end.
      * Note: when `loop` is turned on, the ended event will not fire.
      */
-    onEnd: PropTypes__default['default'].func,
+    onEnd: PropTypes__default["default"].func,
 
     /**
      * Triggered as the `currentTime` of the video updates. It generally fires
      * every 250ms, but it may vary depending on the browser.
      */
-    onTimeUpdate: PropTypes__default['default'].func,
+    onTimeUpdate: PropTypes__default["default"].func,
 
     /**
      * Triggered as the video is loaded. Reports back the amount of the video
      * that has been buffered.
      */
-    onProgress: PropTypes__default['default'].func,
+    onProgress: PropTypes__default["default"].func,
 
     /**
      * Triggered when the player seeks to a specific time. An `onTimeUpdate`
      * event will also be fired at the same time.
      */
-    onSeeked: PropTypes__default['default'].func,
+    onSeeked: PropTypes__default["default"].func,
 
     /**
      * Triggered when the active text track (captions/subtitles) changes. The
      * values will be `null` if text tracks are turned off.
      */
-    onTextTrackChange: PropTypes__default['default'].func,
+    onTextTrackChange: PropTypes__default["default"].func,
 
     /**
      * Triggered when the active cue for the current text track changes. It also
      * fires when the active text track changes. There may be multiple cues
      * active.
      */
-    onCueChange: PropTypes__default['default'].func,
+    onCueChange: PropTypes__default["default"].func,
 
     /**
      * Triggered when the current time hits a registered cue point.
      */
-    onCuePoint: PropTypes__default['default'].func,
+    onCuePoint: PropTypes__default["default"].func,
 
     /**
      * Triggered when the volume in the player changes. Some devices do not
      * support setting the volume of the video independently from the system
      * volume, so this event will never fire on those devices.
      */
-    onVolumeChange: PropTypes__default['default'].func,
+    onVolumeChange: PropTypes__default["default"].func,
 
     /**
      * Triggered when the playback rate changes.
      */
-    onPlaybackRateChange: PropTypes__default['default'].func,
+    onPlaybackRateChange: PropTypes__default["default"].func,
 
     /**
      * Triggered when a new video is loaded in the player.
      */
-    onLoaded: PropTypes__default['default'].func
+    onLoaded: PropTypes__default["default"].func
     /* eslint-enable react/no-unused-prop-types */
 
   };
@@ -481,7 +481,7 @@ Vimeo.defaultProps = {
   dnt: false,
   speed: false
 };
-exports.default = Vimeo;
+exports["default"] = Vimeo;
 
 }).call(this)}).call(this,require('_process'))
 },{"@vimeo/player":20,"_process":4,"prop-types":25,"react":32}],2:[function(require,module,exports){
@@ -29675,7 +29675,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
 },{"process/browser.js":4,"timers":19}],20:[function(require,module,exports){
 (function (global,setImmediate){(function (){
-/*! @vimeo/player v2.15.3 | (c) 2021 Vimeo | MIT License | https://github.com/vimeo/player.js */
+/*! @vimeo/player v2.16.1 | (c) 2021 Vimeo | MIT License | https://github.com/vimeo/player.js */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -30400,7 +30400,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   /**
    * @module lib/embed
    */
-  var oEmbedParameters = ['autopause', 'autoplay', 'background', 'byline', 'color', 'controls', 'dnt', 'height', 'id', 'loop', 'maxheight', 'maxwidth', 'muted', 'playsinline', 'portrait', 'responsive', 'speed', 'texttrack', 'title', 'transparent', 'url', 'width'];
+  var oEmbedParameters = ['autopause', 'autoplay', 'background', 'byline', 'color', 'controls', 'dnt', 'height', 'id', 'keyboard', 'loop', 'maxheight', 'maxwidth', 'muted', 'playsinline', 'portrait', 'responsive', 'speed', 'texttrack', 'title', 'transparent', 'url', 'width'];
   /**
    * Get the 'data-vimeo'-prefixed attributes from an element as an object.
    *
@@ -30930,7 +30930,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
           return screenfull.exit();
         };
 
-        screenfull.on('fullscreenchange', function () {
+        this.fullscreenchangeHandler = function () {
           if (screenfull.isFullscreen) {
             storeCallback(_this, 'event:exitFullscreen', exitFullscreen);
           } else {
@@ -30941,7 +30941,9 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
           _this.ready().then(function () {
             postMessage(_this, 'fullscreenchange', screenfull.isFullscreen);
           });
-        });
+        };
+
+        screenfull.on('fullscreenchange', this.fullscreenchangeHandler);
       }
 
       return this;
@@ -31437,6 +31439,10 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
           }
 
           _this5._window.removeEventListener('message', _this5._onMessage);
+
+          if (screenfull.isEnabled) {
+            screenfull.off('fullscreenchange', _this5.fullscreenchangeHandler);
+          }
 
           resolve();
         });
