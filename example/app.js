@@ -1,7 +1,7 @@
 /* global document */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Vimeo from '..';
+import Vimeo from '@u-wave/react-vimeo'; // eslint-disable-line import/no-unresolved
 
 const videos = [
   { id: 115783408, name: 'Jambinai - Connection' },

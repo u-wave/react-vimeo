@@ -10,6 +10,7 @@
     "start": "serve ."
   },
   "dependencies": {
+    "@u-wave/react-vimeo": "file:..",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "serve": "^11.3.0"
