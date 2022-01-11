@@ -418,6 +418,12 @@ Vimeo.defaultProps = {
   responsive: false,
   dnt: false,
   speed: false,
+  keyboard: true,
+  pip: false,
+  playsinline: true,
+  quality: undefined,
+  texttrack: undefined,
+  transparent: true,
 };
 
 export default Vimeo;
