@@ -64,7 +64,7 @@
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.1",
     "rollup": "^2.35.0",
-    "tsd": "^0.19.0"
+    "tsd": "^0.20.0"
   },
   "workspaces": {
     "packages": [
