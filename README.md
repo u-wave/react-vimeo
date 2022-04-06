@@ -39,7 +39,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | autoplay | bool | false | Automatically start playback of the video. Note that this won’t work on some devices. |
 | showByline | bool | true | Show the byline on the video. |
 | color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. _(Ex: "ef2f9f")_ |
-| dnt | bool | false | Blocks the player from tracking any session data, including all cookies and analytics |
+| dnt | bool | false | Blocks the player from tracking any session data, including all cookies and analytics. |
 | controls | bool | true | Hide all elements in the player (play bar, sharing buttons, etc). |
 | loop | bool | false | Play the video again when it reaches the end. |
 | showPortrait | bool | true | Show the portrait on the video. |
@@ -48,6 +48,12 @@ import Vimeo from '@u-wave/react-vimeo';
 | background | bool | false | Starts in a background state with no controls to help with autoplay |
 | responsive | bool | false | Enable responsive mode and resize according to parent element (experimental) |
 | speed | bool | false | Enable playback rate controls (requires Vimeo PRO / Business account) |
+| keyboard | bool | true | Allows for keyboard input to trigger player events. |
+| pip | bool | false | Show the picture-in-picture button in the controlbar and enable the picture-in-picture API. |
+| playsInline | bool | true | Play video inline on mobile devices, to automatically go fullscreen on playback set this parameter to false. |
+| quality | string |  | Vimeo Plus, PRO, and Business members can default an embedded video to a specific quality on desktop. |
+| textTrack | string |  | Turn captions/subtitles on for a specific language by default. |
+| transparent | bool | true | The responsive player and transparent background are enabled by default, to disable set this parameter to false. |
 | onReady | function |  | Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter. |
 | onError | function |  | Sent when the player triggers an error. |
 | onPlay | function |  | Triggered when the video plays. |
@@ -62,6 +68,8 @@ import Vimeo from '@u-wave/react-vimeo';
 | onVolumeChange | function |  | Triggered when the volume in the player changes. Some devices do not support setting the volume of the video independently from the system volume, so this event will never fire on those devices. |
 | onPlaybackRateChange | function |  | Triggered when the playback rate changes. |
 | onLoaded | function |  | Triggered when a new video is loaded in the player. |
+
+
 
 
 ## Related

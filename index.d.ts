@@ -243,6 +243,40 @@ export interface VimeoProps {
   dnt?: boolean
 
   /**
+   * Allows for keyboard input to trigger player events.
+   */
+  keyboard?: boolean
+
+  /**
+   * Show the picture-in-picture button in the controlbar
+   * and enable the picture-in-picture API.
+   */
+  pip?: boolean
+
+  /**
+   * Play video inline on mobile devices, to automatically
+   * go fullscreen on playback set this parameter to false.
+   */
+  playsInline?: boolean
+
+  /**
+   * Vimeo Plus, PRO, and Business members can default
+   * an embedded video to a specific quality on desktop.
+   */
+  quality?: string
+
+  /**
+   * Turn captions/subtitles on for a specific language by default.
+   */
+  textTrack?: string
+
+  /**
+   * The responsive player and transparent background are enabled
+   * by default, to disable set this parameter to false.
+   */
+  transparent?: boolean
+
+  /**
    * Sent when the Vimeo player API has loaded.
    * Receives the Vimeo player object in the first parameter.
    */
