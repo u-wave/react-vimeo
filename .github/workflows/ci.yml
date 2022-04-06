@@ -3,46 +3,49 @@ name: CI
 on: [push, pull_request]
 
 jobs:
+  types:
+    name: Types
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm install
+      - name: Check types
+        run: npm run tsd
+
   lint:
     name: Code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14.x
+          node-version: lts/*
       - name: Install dependencies
         run: npm install
       - name: Check code style
         run: npm run lint
 
-  types:
-    name: Test types
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v2
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
-      - name: Install dependencies
-        run: npm install
-      - name: Check types
-        run: npm run test:types
-
   test:
     name: Tests
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x]
-        react-version: ['16', '17']
+        node-version: [14.x, 16.x, 17.x]
+        react-version: [17.x, 18.x]
+        include:
+          - node-version: 12.x
+            react-version: 16.0.0
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node.js ${{matrix.node-version}}
         uses: actions/setup-node@v2
         with:
@@ -50,7 +53,10 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install React ${{matrix.react-version}}
-        if: matrix.react-version != '17'
-        run: npm install react@${{matrix.react-version}} react-dom@${{matrix.react-version}} react-test-renderer@${{matrix.react-version}}
+        if: matrix.react-version != '18.x'
+        run: |
+          npm install --save-dev \
+            react@${{matrix.react-version}} \
+            react-dom@${{matrix.react-version}}
       - name: Run tests
-        run: npm run test:unit
+        run: npm run tests-only

@@ -9,9 +9,9 @@
     "prepare": "npm run build",
     "build": "rollup -c",
     "lint": "eslint --cache .",
-    "test": "npm run lint && npm run test:unit && npm run test:types",
-    "test:unit": "cross-env BABEL_ENV=test mocha --require @babel/register test/*.js",
-    "test:types": "tsd",
+    "test": "npm run lint && npm run tests-only && npm run tsd",
+    "tests-only": "cross-env BABEL_ENV=test mocha --require @babel/register test/*.js",
+    "tsd": "tsd",
     "docs": "prop-types-table src/index.js | md-insert README.md --header Props -i",
     "example": "npm run -w example build"
   },
