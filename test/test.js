@@ -1,23 +1,7 @@
-import React from 'react';
-import { createRenderer } from 'react-test-renderer/shallow';
 import expect, { createSpy } from 'expect';
 import render from './util/render';
-import createVimeo from './util/createVimeo';
 
 describe('Vimeo', () => {
-  it('should render a div with an ID and className', () => {
-    const { Vimeo } = createVimeo();
-    const renderer = createRenderer();
-    renderer.render(<Vimeo id="myId" className="myClassName" />);
-    expect(renderer.getRenderOutput()).toMatch({
-      type: 'div',
-      props: {
-        id: 'myId',
-        className: 'myClassName',
-      },
-    });
-  });
-
   it('should create a Vimeo player when mounted', async () => {
     const onReady = createSpy();
     const { sdkMock, playerMock } = render({
