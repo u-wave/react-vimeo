@@ -1,6 +1,6 @@
 {
   "name": "@u-wave/react-vimeo",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "Vimeo player component for React.",
   "main": "dist/react-vimeo.js",
   "module": "dist/react-vimeo.es.js",
