@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "react-vimeo-example",
+  "name": "@u-wave/react-vimeo-example",
   "description": "@u-wave/react-vimeo example.",
   "version": "0.0.0-example",
   "scripts": {
@@ -10,11 +10,9 @@
   },
   "dependencies": {
     "@u-wave/react-vimeo": "file:..",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
-  "devDependencies": {
     "esbuild": "^0.14.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "serve": "^13.0.2"
   }
 }
