@@ -39,9 +39,6 @@ jobs:
       matrix:
         node-version: [14.x, 16.x, 17.x]
         react-version: [17.x, 18.x]
-        include:
-          - node-version: 12.x
-            react-version: 16.0.0
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -55,7 +52,7 @@ jobs:
       - name: Install React ${{matrix.react-version}}
         if: matrix.react-version != '18.x'
         run: |
-          npm install --save-dev \
+          npm install --force --save-dev \
             react@${{matrix.react-version}} \
             react-dom@${{matrix.react-version}}
       - name: Run tests
