@@ -2,18 +2,13 @@ import * as React from 'react'
 import {
   Player,
   Error,
-  PlayEvent,
-  PauseEvent,
-  EndEvent,
-  TimeUpdateEvent,
-  ProgressEvent,
-  SeekedEvent,
-  TextTrackEvent,
+  TimeEvent,
+  TextTrackChangeEvent,
   CueChangeEvent,
   CuePointEvent,
-  VolumeEvent,
+  VolumeChangeEvent,
   PlaybackRateEvent,
-  LoadEvent,
+  LoadedEvent,
   VimeoVideoQuality,
 } from '@vimeo/player'
 
@@ -159,36 +154,36 @@ export interface VimeoOptions {
   /**
    * Triggered when the video plays.
    */
-  onPlay?: (event: PlayEvent) => void
+  onPlay?: (event: TimeEvent) => void
   /**
    * Triggered when the video pauses.
    */
-  onPause?: (event: PauseEvent) => void
+  onPause?: (event: TimeEvent) => void
   /**
    * Triggered any time the video playback reaches the end.
    * Note: when `loop` is turned on, the ended event will not fire.
    */
-  onEnd?: (event: EndEvent) => void
+  onEnd?: (event: TimeEvent) => void
   /**
    * Triggered as the `currentTime` of the video updates. It generally fires
    * every 250ms, but it may vary depending on the browser.
    */
-  onTimeUpdate?: (event: TimeUpdateEvent) => void
+  onTimeUpdate?: (event: TimeEvent) => void
   /**
    * Triggered as the video is loaded. Reports back the amount of the video
    * that has been buffered.
    */
-  onProgress?: (event: ProgressEvent) => void
+  onProgress?: (event: TimeEvent) => void
   /**
    * Triggered when the player seeks to a specific time. An `onTimeUpdate`
    * event will also be fired at the same time.
    */
-  onSeeked?: (event: SeekedEvent) => void
+  onSeeked?: (event: TimeEvent) => void
   /**
    * Triggered when the active text track (captions/subtitles) changes. The
    * values will be `null` if text tracks are turned off.
    */
-  onTextTrackChange?: (event: TextTrackEvent) => void
+  onTextTrackChange?: (event: TextTrackChangeEvent) => void
   /**
    * Triggered when the active cue for the current text track changes. It also
    * fires when the active text track changes. There may be multiple cues
@@ -204,7 +199,7 @@ export interface VimeoOptions {
    * support setting the volume of the video independently from the system
    * volume, so this event will never fire on those devices.
    */
-  onVolumeChange?: (event: VolumeEvent) => void
+  onVolumeChange?: (event: VolumeChangeEvent) => void
   /**
    * Triggered when the playback rate in the player changes.
    */
@@ -212,7 +207,7 @@ export interface VimeoOptions {
   /**
    * Triggered when a new video is loaded in the player.
    */
-  onLoaded?: (event: LoadEvent) => void
+  onLoaded?: (event: LoadedEvent) => void
 }
 
 export interface VimeoProps extends VimeoOptions {
