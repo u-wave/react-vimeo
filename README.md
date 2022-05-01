@@ -61,16 +61,24 @@ import Vimeo from '@u-wave/react-vimeo';
 | onEnd | function |  | Triggered any time the video playback reaches the end. Note: when `loop` is turned on, the ended event will not fire. |
 | onTimeUpdate | function |  | Triggered as the `currentTime` of the video updates. It generally fires every 250ms, but it may vary depending on the browser. |
 | onProgress | function |  | Triggered as the video is loaded. Reports back the amount of the video that has been buffered. |
+| onSeeking | function |  | Triggered when the player starts seeking to a specific time. An `onTimeUpdate` event will also be fired at the same time. |
 | onSeeked | function |  | Triggered when the player seeks to a specific time. An `onTimeUpdate` event will also be fired at the same time. |
 | onTextTrackChange | function |  | Triggered when the active text track (captions/subtitles) changes. The values will be `null` if text tracks are turned off. |
+| onChapterChange | function |  | Triggered when the current chapter changes. |
 | onCueChange | function |  | Triggered when the active cue for the current text track changes. It also fires when the active text track changes. There may be multiple cues active. |
 | onCuePoint | function |  | Triggered when the current time hits a registered cue point. |
 | onVolumeChange | function |  | Triggered when the volume in the player changes. Some devices do not support setting the volume of the video independently from the system volume, so this event will never fire on those devices. |
 | onPlaybackRateChange | function |  | Triggered when the playback rate changes. |
+| onBufferStart | function |  | Triggered when buffering starts in the player. This is also triggered during preload and while seeking. |
+| onBufferEnd | function |  | Triggered when buffering ends in the player. This is also triggered at the end of preload and seeking. |
 | onLoaded | function |  | Triggered when a new video is loaded in the player. |
-
-
-
+| onDurationChange | function |  | Triggered when the duration attribute has been updated. |
+| onFullscreenChange | function |  | Triggered when the player enters or exits fullscreen. |
+| onQualityChange | function |  | Triggered when the set quality changes. |
+| onCameraChange | function |  | Triggered when any of the camera properties change for 360° videos. |
+| onResize | function |  | Triggered when the intrinsic size of the media changes. |
+| onEnterPictureInPicture | function |  | Triggered when the player enters picture-in-picture. |
+| onLeavePictureInPicture | function |  | Triggered when the player leaves picture-in-picture. |
 
 ## Related
 

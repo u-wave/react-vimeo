@@ -101,6 +101,8 @@ function useVimeo(container, {
   paused,
   volume,
   start,
+
+  // Events
   onReady,
   onError,
   onPlay,
@@ -108,13 +110,24 @@ function useVimeo(container, {
   onEnd,
   onTimeUpdate,
   onProgress,
+  onSeeking,
   onSeeked,
   onTextTrackChange,
+  onChapterChange,
   onCueChange,
   onCuePoint,
   onVolumeChange,
   onPlaybackRateChange,
+  onBufferStart,
+  onBufferEnd,
   onLoaded,
+  onDurationChange,
+  onFullscreenChange,
+  onQualityChange,
+  onCameraChange,
+  onResize,
+  onEnterPictureInPicture,
+  onLeavePictureInPicture,
 }) {
   const isFirstRender = useRef(true);
   const player = useVimeoPlayer(container, {
@@ -176,18 +189,29 @@ function useVimeo(container, {
     };
   }, []);
 
+  useEventHandler(player, 'error', onError);
   useEventHandler(player, 'play', onPlay);
   useEventHandler(player, 'pause', onPause);
   useEventHandler(player, 'ended', onEnd);
   useEventHandler(player, 'timeupdate', onTimeUpdate);
   useEventHandler(player, 'progress', onProgress);
+  useEventHandler(player, 'seeking', onSeeking);
   useEventHandler(player, 'seeked', onSeeked);
   useEventHandler(player, 'texttrackchange', onTextTrackChange);
+  useEventHandler(player, 'chapterchange', onChapterChange);
   useEventHandler(player, 'cuechange', onCueChange);
   useEventHandler(player, 'cuepoint', onCuePoint);
   useEventHandler(player, 'volumechange', onVolumeChange);
   useEventHandler(player, 'playbackratechange', onPlaybackRateChange);
-  useEventHandler(player, 'error', onError);
+  useEventHandler(player, 'bufferstart', onBufferStart);
+  useEventHandler(player, 'bufferend', onBufferEnd);
+  useEventHandler(player, 'durationchange', onDurationChange);
+  useEventHandler(player, 'fullscreenchange', onFullscreenChange);
+  useEventHandler(player, 'qualitychange', onQualityChange);
+  useEventHandler(player, 'camerachange', onCameraChange);
+  useEventHandler(player, 'resize', onResize);
+  useEventHandler(player, 'enterpictureinpicture', onEnterPictureInPicture);
+  useEventHandler(player, 'leavepictureinpicture', onLeavePictureInPicture);
   useEventHandler(player, 'loaded', onLoaded);
 
   usePlayerEffect(player, () => {
@@ -464,6 +488,11 @@ if (process.env.NODE_ENV !== 'production') {
      */
     onProgress: PropTypes.func,
     /**
+     * Triggered when the player starts seeking to a specific time. An
+     * `onTimeUpdate` event will also be fired at the same time.
+     */
+    onSeeking: PropTypes.func,
+    /**
      * Triggered when the player seeks to a specific time. An `onTimeUpdate`
      * event will also be fired at the same time.
      */
@@ -473,6 +502,10 @@ if (process.env.NODE_ENV !== 'production') {
      * values will be `null` if text tracks are turned off.
      */
     onTextTrackChange: PropTypes.func,
+    /**
+     * Triggered when the current chapter changes.
+     */
+    onChapterChange: PropTypes.func,
     /**
      * Triggered when the active cue for the current text track changes. It also
      * fires when the active text track changes. There may be multiple cues
@@ -494,9 +527,47 @@ if (process.env.NODE_ENV !== 'production') {
      */
     onPlaybackRateChange: PropTypes.func,
     /**
+     * Triggered when buffering starts in the player.
+     * This is also triggered during preload and while seeking.
+     */
+    onBufferStart: PropTypes.func,
+    /**
+     * Triggered when buffering ends in the player.
+     * This is also triggered at the end of preload and seeking.
+     */
+    onBufferEnd: PropTypes.func,
+    /**
      * Triggered when a new video is loaded in the player.
      */
     onLoaded: PropTypes.func,
+    /**
+     * Triggered when the duration attribute has been updated.
+     */
+    onDurationChange: PropTypes.func,
+    /**
+     * Triggered when the player enters or exits fullscreen.
+     */
+    onFullscreenChange: PropTypes.func,
+    /**
+     * Triggered when the set quality changes.
+     */
+    onQualityChange: PropTypes.func,
+    /**
+     * Triggered when any of the camera properties change for 360° videos.
+     */
+    onCameraChange: PropTypes.func,
+    /**
+     * Triggered when the intrinsic size of the media changes.
+     */
+    onResize: PropTypes.func,
+    /**
+     * Triggered when the player enters picture-in-picture.
+     */
+    onEnterPictureInPicture: PropTypes.func,
+    /**
+     * Triggered when the player leaves picture-in-picture.
+     */
+    onLeavePictureInPicture: PropTypes.func,
 
     /* eslint-enable react/no-unused-prop-types */
   };

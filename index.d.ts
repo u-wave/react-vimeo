@@ -1,15 +1,21 @@
 import * as React from 'react'
 import {
-  Player,
-  Error,
-  TimeEvent,
-  TextTrackChangeEvent,
+  CameraChangeEvent,
+  ChapterChangeEvent,
   CueChangeEvent,
   CuePointEvent,
-  VolumeChangeEvent,
-  PlaybackRateEvent,
+  DurationChangeEvent,
+  Error,
+  FullScreenChangeEvent,
   LoadedEvent,
+  PlaybackRateEvent,
+  Player,
+  QualityChangeEvent,
+  ResizeEvent,
+  TextTrackChangeEvent,
+  TimeEvent,
   VimeoVideoQuality,
+  VolumeChangeEvent,
 } from '@vimeo/player'
 
 export interface VimeoOptions {
@@ -175,6 +181,11 @@ export interface VimeoOptions {
    */
   onProgress?: (event: TimeEvent) => void
   /**
+   * Triggered when the player starts seeking to a specific time. An
+   * `onTimeUpdate` event will also be fired at the same time.
+   */
+  onSeeking?: (event: TimeEvent) => void
+  /**
    * Triggered when the player seeks to a specific time. An `onTimeUpdate`
    * event will also be fired at the same time.
    */
@@ -184,6 +195,10 @@ export interface VimeoOptions {
    * values will be `null` if text tracks are turned off.
    */
   onTextTrackChange?: (event: TextTrackChangeEvent) => void
+  /**
+   * Triggered when the current chapter changes.
+   */
+  onChapterChange?: (event: ChapterChangeEvent) => void
   /**
    * Triggered when the active cue for the current text track changes. It also
    * fires when the active text track changes. There may be multiple cues
@@ -205,9 +220,45 @@ export interface VimeoOptions {
    */
   onPlaybackRateChange?: (event: PlaybackRateEvent) => void
   /**
+   * Triggered when buffering starts in the player. This is also triggered during preload and while seeking.
+   */
+  onBufferStart?: () => void
+  /**
+   * Triggered when buffering ends in the player. This is also triggered at the end of preload and seeking.
+   */
+  onBufferEnd?: () => void
+  /**
    * Triggered when a new video is loaded in the player.
    */
   onLoaded?: (event: LoadedEvent) => void
+  /**
+   * Triggered when the duration attribute has been updated.
+   */
+  onDurationChange?: (event: DurationChangeEvent) => void
+  /**
+   * Triggered when the player enters or exits fullscreen.
+   */
+  onFullscreenChange?: (event: FullScreenChangeEvent) => void
+  /**
+   * Triggered when the set quality changes.
+   */
+  onQualityChange?: (event: QualityChangeEvent) => void
+  /**
+   * Triggered when any of the camera properties change for 360° videos.
+   */
+  onCameraChange?: (event: CameraChangeEvent) => void
+  /**
+   * Triggered when the intrinsic size of the media changes.
+   */
+  onResize?: (event: ResizeEvent) => void
+  /**
+   * Triggered when the player enters picture-in-picture.
+   */
+  onEnterPictureInPicture?: () => void
+  /**
+   * Triggered when the player leaves picture-in-picture.
+   */
+  onLeavePictureInPicture?: () => void
 }
 
 export interface VimeoProps extends VimeoOptions {
