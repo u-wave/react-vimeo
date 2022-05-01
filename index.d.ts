@@ -1,158 +1,16 @@
 import * as React from 'react'
-import Player, { Error } from '@vimeo/player'
 
-export type PlayEvent = {
-  /**
-   * The length of the video in seconds.
-   */
-  duration: number
-  /**
-   * The amount of the video, in seconds, that has played.
-   */
-  seconds: number
-  /**
-   * The amount of the video that has played in comparison to the length of the video;
-   * multiply by 100 to obtain the percentage.
-   */
-  percent: number
-}
+import Player,{
+  Error,
+  EventMap,
+  VimeoVideoQuality,
+} from '@vimeo/player'
 
-export type PlayingEvent = PlayEvent;
-
-export type PauseEvent = {
-  /**
-   * The length of the video in seconds.
-   */
-  duration: number
-  /**
-   * The amount of the video, in seconds, that has played to the pause position.
-   */
-  seconds: number
-  /**
-   * The amount of the video that has played to the pause position in comparison to the length of the video; multiply by 100 to obtain the percentage.
-   */
-  percent: number
-}
-
-export type EndEvent = PauseEvent
-
-export type TimeUpdateEvent = {
-  /**
-   * The length of the video in seconds.
-   */
-  duration: number
-  /**
-   * The amount of the video, in seconds, that has played from the current playback position.
-   */
-  seconds: number
-  /**
-   * The amount of the video that has played from the current playback position in comparison to the length of the video; multiply by 100 to obtain the percentage.
-   */
-  percent: number
-}
-
-export type ProgressEvent = {
-  /**
-   * The length of the video in seconds.
-   */
-  duration: number
-  /**
-   * The amount of the video, in seconds, that has buffered.
-   */
-  seconds: number
-  /**
-   * The amount of the video that has buffered in comparison to the length of the video;
-   * multiply by 100 to obtain the percentage.
-   */
-  percent: number
-}
-
-export type SeekedEvent = {
-  /**
-   * The length of the video in seconds.
-   */
-  duration: number
-  /**
-   * The amount of the video, in seconds, that has played from the new seek position.
-   */
-  seconds: number
-  /**
-  * The amount of the video that has played from the new seek position in comparison to the length of the video; multiply by 100 to obtain the percentage.
-   */
-  percent: number
-}
-
-export type TextTrackEvent = {
-  kind: 'captions' | 'subtitles'
-  label: string
-  language: string
-}
-
-export type Cue = {
-  html: string
-  text: string
-}
-
-export type CueChangeEvent = {
-  cues: Cue[]
-  kind: 'captions' | 'subtitles'
-  label: string
-  language: string
-}
-
-export type CuePointEvent = {
-  /**
-   * The location of the cue point in seconds.
-   */
-  time: number
-  /**
-   * The ID of the cue point.
-   */
-  id: string
-  /**
-   * The custom data from the `addCuePoint()` call, or an empty object.
-   */
-  data: object
-}
-
-export type VolumeEvent = {
-  /**
-   * The new volume level.
-   */
-  volume: number
-}
-
-export type PlaybackRateEvent = {
-  /**
-   * The new playback rate.
-   */
-  playbackRate: number
-}
-
-export type LoadEvent = {
-  /**
-   * The ID of the new video.
-   */
-  id: number
-}
-
-export interface VimeoProps {
+export interface VimeoOptions {
   /**
    * A Vimeo video ID or URL.
    */
   video: number | string
-  /**
-   * DOM ID for the player element.
-   */
-  id?: string
-  /**
-   * CSS className for the player element.
-   */
-  className?: string
-  /**
-   * Inline style for container element.
-   */
-  style?: React.CSSProperties
   /**
    * Width of the player element.
    */
@@ -271,7 +129,7 @@ export interface VimeoProps {
    * Vimeo Plus, PRO, and Business members can default
    * an embedded video to a specific quality on desktop.
    */
-  quality?: string
+  quality?: VimeoVideoQuality
 
   /**
    * Turn captions/subtitles on for a specific language by default.
@@ -296,64 +154,79 @@ export interface VimeoProps {
   /**
    * Triggered when video playback is initiated.
    */
-  onPlay?: (event: PlayEvent) => void
+  onPlay?: (event: EventMap['play']) => void
   /**
    * Triggered when the video starts playing.
    */
-  onPlaying?: (event: PlayingEvent) => void
+  onPlaying?: (event: EventMap['playing']) => void
   /**
    * Triggered when the video pauses.
    */
-  onPause?: (event: PauseEvent) => void
+  onPause?: (event: EventMap['pause']) => void
   /**
    * Triggered any time the video playback reaches the end.
    * Note: when `loop` is turned on, the ended event will not fire.
    */
-  onEnd?: (event: EndEvent) => void
+  onEnd?: (event: EventMap['ended']) => void
   /**
    * Triggered as the `currentTime` of the video updates. It generally fires
    * every 250ms, but it may vary depending on the browser.
    */
-  onTimeUpdate?: (event: TimeUpdateEvent) => void
+  onTimeUpdate?: (event: EventMap['timeupdate']) => void
   /**
    * Triggered as the video is loaded. Reports back the amount of the video
    * that has been buffered.
    */
-  onProgress?: (event: ProgressEvent) => void
+  onProgress?: (event: EventMap['progress']) => void
   /**
    * Triggered when the player seeks to a specific time. An `onTimeUpdate`
    * event will also be fired at the same time.
    */
-  onSeeked?: (event: SeekedEvent) => void
+  onSeeked?: (event: EventMap['seeked']) => void
   /**
    * Triggered when the active text track (captions/subtitles) changes. The
    * values will be `null` if text tracks are turned off.
    */
-  onTextTrackChange?: (event: TextTrackEvent) => void
+  onTextTrackChange?: (event: EventMap['texttrackchange']) => void
   /**
    * Triggered when the active cue for the current text track changes. It also
    * fires when the active text track changes. There may be multiple cues
    * active.
    */
-  onCueChange?: (event: CueChangeEvent) => void
+  onCueChange?: (event: EventMap['cuechange']) => void
   /**
    * Triggered when the current time hits a registered cue point.
    */
-  onCuePoint?: (event: CuePointEvent) => void
+  onCuePoint?: (event: EventMap['cuepoint']) => void
   /**
    * Triggered when the volume in the player changes. Some devices do not
    * support setting the volume of the video independently from the system
    * volume, so this event will never fire on those devices.
    */
-  onVolumeChange?: (event: VolumeEvent) => void
+  onVolumeChange?: (event: EventMap['volumechange']) => void
   /**
    * Triggered when the playback rate in the player changes.
    */
-  onPlaybackRateChange?: (event: PlaybackRateEvent) => void
+  onPlaybackRateChange?: (event: EventMap['playbackratechange']) => void
   /**
    * Triggered when a new video is loaded in the player.
    */
-  onLoaded?: (event: LoadEvent) => void
+  onLoaded?: (event: EventMap['loaded']) => void
+}
+
+export interface VimeoProps extends VimeoOptions {
+  /**
+   * DOM ID for the player element.
+   */
+  id?: string
+  /**
+   * CSS className for the player element.
+   */
+  className?: string
+  /**
+   * Inline style for container element.
+   */
+  style?: React.CSSProperties
 }
 
 /**
