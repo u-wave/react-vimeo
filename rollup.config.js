@@ -2,13 +2,20 @@ import babel from '@rollup/plugin-babel';
 
 const meta = require('./package.json');
 
-process.env.BABEL_ENV = 'rollup';
-
 export default {
   input: './src/index.js',
   output: [
-    { format: 'cjs', file: meta.main, exports: 'named' },
-    { format: 'es', file: meta.module },
+    {
+      format: 'cjs',
+      file: meta.exports['.'].require,
+      exports: 'named',
+      sourcemap: true,
+    },
+    {
+      format: 'esm',
+      file: meta.exports['.'].import,
+      sourcemap: true,
+    },
   ],
 
   external: Object.keys(meta.dependencies)

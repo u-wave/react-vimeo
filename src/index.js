@@ -1,180 +1,277 @@
+// @ts-check
 import React from 'react';
 import PropTypes from 'prop-types';
 import Player from '@vimeo/player';
-import eventNames from './eventNames';
 
-class Vimeo extends React.Component {
-  constructor(props) {
-    super(props);
+/** @typedef {import('@vimeo/player').EventMap} EventMap */
+/**
+ * @template {any} Data
+ * @typedef {import('@vimeo/player').EventCallback<Data>} EventCallback
+ */
 
-    this.refContainer = this.refContainer.bind(this);
-  }
+const {
+  useEffect,
+  useRef,
+  useState,
+} = React;
 
-  componentDidMount() {
-    this.createPlayer();
-  }
+/**
+ * @param {React.RefObject<HTMLElement>} container
+ * @param {import('@vimeo/player').Options} options
+ */
+function useVimeoPlayer(container, options) {
+  // Storing the player in the very first hook makes it easier to
+  // find in React DevTools :)
+  const [player, setPlayer] = useState(/** @type {Player | null} */ (null));
 
-  componentDidUpdate(prevProps) {
-    // eslint-disable-next-line react/destructuring-assignment
-    const changes = Object.keys(this.props).filter((name) => this.props[name] !== prevProps[name]);
+  // The effect that manages the player's lifetime.
+  useEffect(() => {
+    const instance = new Player(container.current, options);
+    setPlayer(instance);
 
-    this.updateProps(changes);
-  }
-
-  componentWillUnmount() {
-    this.player.destroy();
-  }
-
-  /**
-   * @private
-   */
-  getInitialOptions() {
-    /* eslint-disable react/destructuring-assignment */
-    return {
-      id: this.props.video,
-      width: this.props.width,
-      height: this.props.height,
-      autopause: this.props.autopause,
-      autoplay: this.props.autoplay,
-      byline: this.props.showByline,
-      color: this.props.color,
-      controls: this.props.controls,
-      loop: this.props.loop,
-      portrait: this.props.showPortrait,
-      title: this.props.showTitle,
-      muted: this.props.muted,
-      background: this.props.background,
-      responsive: this.props.responsive,
-      dnt: this.props.dnt,
-      speed: this.props.speed,
-      keyboard: this.props.keyboard,
-      pip: this.props.pip,
-      playsinline: this.props.playsInline,
-      quality: this.props.quality,
-      texttrack: this.props.textTrack,
-      transparent: this.props.transparent,
+    return () => {
+      instance.destroy();
     };
-    /* eslint-enable react/destructuring-assignment */
-  }
+  }, []);
 
-  /**
-   * @private
-   */
-  updateProps(propNames) {
-    const { player } = this;
-    propNames.forEach((name) => {
-      // eslint-disable-next-line react/destructuring-assignment
-      const value = this.props[name];
-      switch (name) {
-        case 'autopause':
-          player.setAutopause(value);
-          break;
-        case 'color':
-          player.setColor(value);
-          break;
-        case 'loop':
-          player.setLoop(value);
-          break;
-        case 'volume':
-          player.setVolume(value);
-          break;
-        case 'paused':
-          player.getPaused().then((paused) => {
-            if (value && !paused) {
-              return player.pause();
-            }
-            if (!value && paused) {
-              return player.play();
-            }
-            return null;
-          });
-          break;
-        case 'width':
-        case 'height':
-          player.element[name] = value;
-          break;
-        case 'video':
-          if (value) {
-            const { start } = this.props;
-            const loaded = player.loadVideo(value);
-            // Set the start time only when loading a new video.
-            // It seems like this has to be done after the video has loaded, else it just starts at
-            // the beginning!
-            if (typeof start === 'number') {
-              loaded.then(() => {
-                player.setCurrentTime(start);
-              });
-            }
-          } else {
-            player.unload();
-          }
-          break;
-        default:
-          // Nothing
+  return player;
+}
+
+/**
+ * Use an effect with a maybe-existing player.
+ *
+ * @param {Player|null} player
+ * @param {() => void | (() => void)} callback
+ * @param {unknown[]} dependencies
+ */
+function usePlayerEffect(player, callback, dependencies) {
+  useEffect(() => {
+    if (player) callback();
+  }, [player, ...dependencies]);
+}
+
+/**
+ * Attach an event listener to a Vimeo player.
+ *
+ * @template {keyof EventMap} K
+ * @param {Player} player
+ * @param {K} event
+ * @param {EventCallback<EventMap[K]>} handler
+ */
+function useEventHandler(player, event, handler) {
+  usePlayerEffect(player, () => {
+    if (handler) {
+      player.on(event, handler);
+    }
+    return () => {
+      if (handler) {
+        player.off(event, handler);
       }
-    });
-  }
+    };
+  }, [event, handler]);
+}
 
-  /**
-   * @private
-   */
-  createPlayer() {
-    const { start, volume } = this.props;
+/**
+ * @param {React.RefObject<HTMLElement>} container
+ * @param {import('../index').VimeoOptions} options
+ */
+function useVimeo(container, {
+  video,
+  width,
+  height,
+  autopause,
+  autoplay,
+  showByline,
+  color,
+  controls,
+  loop,
+  showPortrait,
+  showTitle,
+  muted,
+  background,
+  responsive,
+  dnt,
+  speed,
+  keyboard,
+  pip,
+  playsInline,
+  quality,
+  textTrack,
+  transparent,
+  paused,
+  volume,
+  start,
+  onReady,
+  onError,
+  onPlay,
+  onPause,
+  onEnd,
+  onTimeUpdate,
+  onProgress,
+  onSeeked,
+  onTextTrackChange,
+  onCueChange,
+  onCuePoint,
+  onVolumeChange,
+  onPlaybackRateChange,
+  onLoaded,
+}) {
+  const isFirstRender = useRef(true);
+  const player = useVimeoPlayer(container, {
+    [typeof video === 'string' ? 'url' : 'id']: video,
+    // The Vimeo player officially only supports integer width/height.
+    // If a "100%" string was provided we apply it afterwards in an effect.
+    width: typeof width === 'number' ? width : undefined,
+    height: typeof height === 'number' ? height : undefined,
+    autopause,
+    autoplay,
+    byline: showByline,
+    color,
+    controls,
+    loop,
+    portrait: showPortrait,
+    title: showTitle,
+    muted,
+    background,
+    responsive,
+    dnt,
+    speed,
+    keyboard,
+    pip,
+    playsinline: playsInline,
+    quality,
+    texttrack: textTrack,
+    transparent,
+  });
 
-    this.player = new Player(this.container, this.getInitialOptions());
+  // Initial player setup.
+  // This effect should only run once *and* it's async,
+  // so the most reliable thing to do is to put all its dependencies in a mutable ref.
+  const initState = useRef({ onReady, onError, start });
+  Object.assign(initState.current, { onReady, onError, start });
+  usePlayerEffect(player, () => {
+    let cancelled = false;
 
-    Object.keys(eventNames).forEach((dmName) => {
-      const reactName = eventNames[dmName];
-      this.player.on(dmName, (event) => {
-        // eslint-disable-next-line react/destructuring-assignment
-        const handler = this.props[reactName];
-        if (handler) {
-          handler(event);
-        }
-      });
-    });
-
-    const { onError, onReady } = this.props;
-    this.player.ready().then(() => {
-      if (onReady) {
-        onReady(this.player);
+    player.ready().then(() => {
+      if (cancelled) {
+        return;
       }
+      if (initState.current.start) {
+        player.setCurrentTime(initState.current.start);
+      }
+
+      initState.current.onReady?.(player);
     }, (err) => {
-      if (onError) {
-        onError(err);
+      if (cancelled) {
+        return;
+      }
+      if (initState.current.onError) {
+        initState.current.onError(err);
       } else {
         throw err;
       }
     });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-    if (typeof start === 'number') {
-      this.player.setCurrentTime(start);
+  useEventHandler(player, 'play', onPlay);
+  useEventHandler(player, 'pause', onPause);
+  useEventHandler(player, 'ended', onEnd);
+  useEventHandler(player, 'timeupdate', onTimeUpdate);
+  useEventHandler(player, 'progress', onProgress);
+  useEventHandler(player, 'seeked', onSeeked);
+  useEventHandler(player, 'texttrackchange', onTextTrackChange);
+  useEventHandler(player, 'cuechange', onCueChange);
+  useEventHandler(player, 'cuepoint', onCuePoint);
+  useEventHandler(player, 'volumechange', onVolumeChange);
+  useEventHandler(player, 'playbackratechange', onPlaybackRateChange);
+  useEventHandler(player, 'error', onError);
+  useEventHandler(player, 'loaded', onLoaded);
+
+  usePlayerEffect(player, () => {
+    player.setAutopause(autopause);
+  }, [autopause]);
+  usePlayerEffect(player, () => {
+    if (color) player.setColor(color);
+  }, [color]);
+  usePlayerEffect(player, () => {
+    player.setLoop(loop);
+  }, [loop]);
+  usePlayerEffect(player, () => {
+    player.setVolume(volume);
+  }, [volume]);
+  usePlayerEffect(player, () => {
+    player.getPaused().then((prevPaused) => {
+      if (paused && !prevPaused) {
+        return player.pause();
+      }
+      if (!paused && prevPaused) {
+        return player.play();
+      }
+      return null;
+    });
+  }, [paused]);
+  usePlayerEffect(player, () => {
+    /** @type {HTMLIFrameElement} */ (/** @type {any} */ (player).element).width = String(width);
+  }, [width]);
+  usePlayerEffect(player, () => {
+    /** @type {HTMLIFrameElement} */ (/** @type {any} */ (player).element).height = String(height);
+  }, [height]);
+
+  usePlayerEffect(player, () => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return () => {};
     }
 
-    if (typeof volume === 'number') {
-      this.updateProps(['volume']);
+    let cancelled = false;
+    if (video) {
+      const loaded = player.loadVideo(video);
+      // Set the start time only when loading a new video.
+      // It seems like this has to be done after the video has loaded, else it just starts at
+      // the beginning!
+      if (typeof start === 'number') {
+        loaded.then(() => {
+          if (cancelled) {
+            return;
+          }
+          player.setCurrentTime(start);
+        });
+      }
+    } else {
+      player.unload();
     }
-  }
+    return () => {
+      cancelled = true;
+    };
+  }, [video]);
 
-  /**
-   * @private
-   */
-  refContainer(container) {
-    this.container = container;
-  }
+  return player;
+}
 
-  render() {
-    const { id, className, style } = this.props;
+/**
+ * @param {import('../index').VimeoProps} props
+ */
+function Vimeo({
+  id,
+  className,
+  style,
+  ...options
+}) {
+  /** @type {React.RefObject<HTMLDivElement>} */
+  const container = useRef(null);
+  useVimeo(container, options);
 
-    return (
-      <div
-        id={id}
-        className={className}
-        style={style}
-        ref={this.refContainer}
-      />
-    );
-  }
+  return (
+    <div
+      id={id}
+      className={className}
+      style={style}
+      ref={container}
+    />
+  );
 }
 
 if (process.env.NODE_ENV !== 'production') {
@@ -424,4 +521,5 @@ Vimeo.defaultProps = {
   transparent: true,
 };
 
+export { useVimeo };
 export default Vimeo;

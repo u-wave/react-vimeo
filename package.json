@@ -2,8 +2,14 @@
   "name": "@u-wave/react-vimeo",
   "version": "0.9.8",
   "description": "Vimeo player component for React.",
-  "main": "dist/react-vimeo.js",
-  "module": "dist/react-vimeo.es.js",
+  "main": "./dist/react-vimeo.js",
+  "module": "./dist/react-vimeo.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/react-vimeo.js",
+      "import": "./dist/react-vimeo.mjs"
+    }
+  },
   "types": "index.d.ts",
   "scripts": {
     "prepare": "npm run build",
@@ -20,7 +26,7 @@
     "url": "git+https://github.com/u-wave/react-vimeo.git"
   },
   "keywords": [
-    "youtube",
+    "vimeo",
     "react",
     "player",
     "react-component",
