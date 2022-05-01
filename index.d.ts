@@ -156,10 +156,6 @@ export interface VimeoOptions {
    */
   onPlay?: (event: EventMap['play']) => void
   /**
-   * Triggered when the video starts playing.
-   */
-  onPlaying?: (event: EventMap['playing']) => void
-  /**
    * Triggered when the video pauses.
    */
   onPause?: (event: EventMap['pause']) => void
