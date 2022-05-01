@@ -56,7 +56,7 @@ jobs:
       - name: Install React ${{matrix.react-version}}
         if: matrix.react-version != '18.x'
         run: |
-          npm install --save-dev \
+          npm install --force --save-dev \
             react@${{matrix.react-version}} \
             react-dom@${{matrix.react-version}}
       - name: Run tests
