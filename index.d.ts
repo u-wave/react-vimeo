@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {
-  CameraChangeEvent,
-  ChapterChangeEvent,
+  VimeoCameraProps,
+  VimeoChapter,
   CueChangeEvent,
   CuePointEvent,
   DurationChangeEvent,
@@ -198,7 +198,7 @@ export interface VimeoOptions {
   /**
    * Triggered when the current chapter changes.
    */
-  onChapterChange?: (event: ChapterChangeEvent) => void
+  onChapterChange?: (event: VimeoChapter) => void
   /**
    * Triggered when the active cue for the current text track changes. It also
    * fires when the active text track changes. There may be multiple cues
@@ -246,7 +246,7 @@ export interface VimeoOptions {
   /**
    * Triggered when any of the camera properties change for 360° videos.
    */
-  onCameraChange?: (event: CameraChangeEvent) => void
+  onCameraChange?: (event: VimeoCameraProps) => void
   /**
    * Triggered when the intrinsic size of the media changes.
    */
