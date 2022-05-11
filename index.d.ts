@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Player,{
+import Player, {
   Error,
   EventMap,
   VimeoVideoQuality,
@@ -191,7 +191,7 @@ export interface VimeoOptions {
   /**
    * Triggered when the current chapter changes.
    */
-  onChapterChange?: (event: ChapterChangeEvent) => void
+  onChapterChange?: (event: VimeoChapter) => void
   /**
    * Triggered when the active cue for the current text track changes. It also
    * fires when the active text track changes. There may be multiple cues
