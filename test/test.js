@@ -134,6 +134,19 @@ describe('Vimeo', () => {
     expect(playerMock.setHeight).toHaveBeenCalledWith(800);
   });
 
+  it('should set the playback rate using the "playbackRate" props', async () => {
+    const { playerMock, rerender } = render({
+      video: 169408731,
+      playbackRate: 0.5,
+    });
+
+    expect(playerMock.setPlaybackRate).toHaveBeenCalledWith(0.5);
+
+    await rerender({ playbackRate: 2 });
+
+    expect(playerMock.setPlaybackRate).toHaveBeenCalledWith(2);
+  });
+
   it('should destroy player when unmounting', async () => {
     const { playerMock, unmount } = render({
       video: 169408731,
