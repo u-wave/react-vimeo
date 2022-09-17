@@ -47,6 +47,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | muted | bool | false | Starts in a muted state to help with autoplay |
 | background | bool | false | Starts in a background state with no controls to help with autoplay |
 | responsive | bool | false | Enable responsive mode and resize according to parent element (experimental) |
+| playbackRate | number | | Specify playback rate (requires Vimeo PRO / Business account)
 | speed | bool | false | Enable playback rate controls (requires Vimeo PRO / Business account) |
 | keyboard | bool | true | Allows for keyboard input to trigger player events. |
 | pip | bool | false | Show the picture-in-picture button in the controlbar and enable the picture-in-picture API. |
