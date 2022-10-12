@@ -198,7 +198,8 @@ export interface VimeoProps {
   color?: string
 
   /**
-   * Hide all elements in the player (play bar, sharing buttons, etc).
+   * Hide all elements in the player, such as the progress bar, sharing buttons, etc.
+   * (requires Vimeo PRO / Business account)
    */
   controls?: boolean
 
