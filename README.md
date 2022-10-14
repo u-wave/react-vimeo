@@ -40,7 +40,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | showByline | bool | true | Show the byline on the video. |
 | color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. _(Ex: "ef2f9f")_ |
 | dnt | bool | false | Blocks the player from tracking any session data, including all cookies and analytics. |
-| controls | bool | true | Hide all elements in the player (play bar, sharing buttons, etc). |
+| controls | bool | true | Hide all elements in the player, such as the progress bar, sharing buttons, etc. (requires Vimeo PRO / Business account) |
 | loop | bool | false | Play the video again when it reaches the end. |
 | showPortrait | bool | true | Show the portrait on the video. |
 | showTitle | bool | true | Show the title on the video. |
@@ -69,9 +69,6 @@ import Vimeo from '@u-wave/react-vimeo';
 | onVolumeChange | function |  | Triggered when the volume in the player changes. Some devices do not support setting the volume of the video independently from the system volume, so this event will never fire on those devices. |
 | onPlaybackRateChange | function |  | Triggered when the playback rate changes. |
 | onLoaded | function |  | Triggered when a new video is loaded in the player. |
-
-
-
 
 ## Related
 
