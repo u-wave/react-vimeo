@@ -345,9 +345,13 @@ if (process.env.NODE_ENV !== 'production') {
      */
     onError: PropTypes.func,
     /**
-     * Triggered when the video plays.
+     * Triggered when video playback is initiated.
      */
     onPlay: PropTypes.func,
+    /**
+     * Triggered when the video starts playing.
+     */
+    onPlaying: PropTypes.func,
     /**
      * Triggered when the video pauses.
      */

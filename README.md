@@ -56,7 +56,8 @@ import Vimeo from '@u-wave/react-vimeo';
 | transparent | bool | true | The responsive player and transparent background are enabled by default, to disable set this parameter to false. |
 | onReady | function |  | Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter. |
 | onError | function |  | Sent when the player triggers an error. |
-| onPlay | function |  | Triggered when the video plays. |
+| onPlay | function |  | Triggered when video playback is initiated. |
+| onPlaying | function |  | Triggered when the video starts playing. |
 | onPause | function |  | Triggered when the video pauses. |
 | onEnd | function |  | Triggered any time the video playback reaches the end. Note: when `loop` is turned on, the ended event will not fire. |
 | onTimeUpdate | function |  | Triggered as the `currentTime` of the video updates. It generally fires every 250ms, but it may vary depending on the browser. |
