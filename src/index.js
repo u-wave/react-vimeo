@@ -109,6 +109,9 @@ class Vimeo extends React.Component {
             player.unload();
           }
           break;
+        case 'playbackRate':
+          player.setPlaybackRate(value);
+          break;
         default:
           // Nothing
       }
@@ -119,7 +122,7 @@ class Vimeo extends React.Component {
    * @private
    */
   createPlayer() {
-    const { start, volume } = this.props;
+    const { start, volume, playbackRate } = this.props;
 
     this.player = new Player(this.container, this.getInitialOptions());
 
@@ -153,6 +156,10 @@ class Vimeo extends React.Component {
 
     if (typeof volume === 'number') {
       this.updateProps(['volume']);
+    }
+
+    if (typeof playbackRate === 'number') {
+      this.updateProps(['playbackRate']);
     }
   }
 
@@ -292,6 +299,11 @@ if (process.env.NODE_ENV !== 'production') {
      * Enable responsive mode and resize according to parent element (experimental)
      */
     responsive: PropTypes.bool,
+
+    /**
+     * Specify playback rate (requires Vimeo PRO / Business account)
+     */
+    playbackRate: PropTypes.number,
 
     /**
      * Enable playback rate controls (requires Vimeo PRO / Business account)
