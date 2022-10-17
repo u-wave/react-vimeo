@@ -1,5 +1,6 @@
 export default {
   play: 'onPlay',
+  playing: 'onPlaying',
   pause: 'onPause',
   ended: 'onEnd',
   timeupdate: 'onTimeUpdate',

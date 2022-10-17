@@ -17,6 +17,8 @@ export type PlayEvent = {
   percent: number
 }
 
+export type PlayingEvent = PlayEvent;
+
 export type PauseEvent = {
   /**
    * The length of the video in seconds.
@@ -234,6 +236,11 @@ export interface VimeoProps {
   responsive?: boolean
 
   /**
+   * Specify playback rate (requires Vimeo PRO / Business account)
+   */
+  playbackRate?: number
+
+  /**
    * Enable playback rate controls (requires Vimeo PRO / Business account)
    */
   speed?: boolean
@@ -287,9 +294,13 @@ export interface VimeoProps {
    */
   onError?: (error: Error) => void
   /**
-   * Triggered when the video plays.
+   * Triggered when video playback is initiated.
    */
   onPlay?: (event: PlayEvent) => void
+  /**
+   * Triggered when the video starts playing.
+   */
+  onPlaying?: (event: PlayingEvent) => void
   /**
    * Triggered when the video pauses.
    */
