@@ -112,6 +112,9 @@ class Vimeo extends React.Component {
         case 'playbackRate':
           player.setPlaybackRate(value);
           break;
+        case 'quality':
+          player.setQuality(value);
+          break;
         default:
           // Nothing
       }
