@@ -16,7 +16,7 @@
     "build": "rollup -c",
     "lint": "eslint --cache .",
     "test": "npm run lint && npm run tests-only && npm run tsd",
-    "tests-only": "cross-env BABEL_ENV=test mocha --require @babel/register test/*.js",
+    "tests-only": "cross-env BABEL_ENV=test c8 mocha --require @babel/register test/*.js",
     "tsd": "tsd",
     "docs": "prop-types-table src/index.js | md-insert README.md --header Props -i",
     "example": "npm run --prefix example build"
@@ -54,6 +54,7 @@
     "@babel/register": "^7.12.10",
     "@rollup/plugin-babel": "^6.0.0",
     "@u-wave/react-vimeo-example": "file:example",
+    "c8": "^7.12.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.0",
