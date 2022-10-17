@@ -40,7 +40,7 @@ jobs:
         node-version: [14.x, 16.x, 17.x]
         react-version: [17.x, 18.x]
         include:
-          - node-version: 12.x
+          - node-version: 14.x
             react-version: 16.0.0
     runs-on: ubuntu-latest
     steps:
