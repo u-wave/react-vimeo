@@ -177,7 +177,7 @@ export interface VimeoOptions {
    * Triggered when the player starts seeking to a specific time. An
    * `onTimeUpdate` event will also be fired at the same time.
    */
-  onSeeking?: (event: TimeEvent) => void
+  onSeeking?: (event: EventMap['seeking']) => void
   /**
    * Triggered when the player seeks to a specific time. An `onTimeUpdate`
    * event will also be fired at the same time.
@@ -191,7 +191,7 @@ export interface VimeoOptions {
   /**
    * Triggered when the current chapter changes.
    */
-  onChapterChange?: (event: VimeoChapter) => void
+  onChapterChange?: (event: EventMap['chapterchange']) => void
   /**
    * Triggered when the active cue for the current text track changes. It also
    * fires when the active text track changes. There may be multiple cues
