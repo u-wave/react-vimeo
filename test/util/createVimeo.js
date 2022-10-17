@@ -19,6 +19,7 @@ export default function createVimeo({ shouldFail = false } = {}) {
     setColor: createPromiseSpy(),
     setLoop: createPromiseSpy(),
     loadVideo: createPromiseSpy(),
+    playing: createPromiseSpy(),
     unload: createPromiseSpy(),
     play: createSpy().andCall(() => {
       isPaused = false;

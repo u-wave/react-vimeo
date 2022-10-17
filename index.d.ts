@@ -70,7 +70,8 @@ export interface VimeoOptions {
   color?: string
 
   /**
-   * Hide all elements in the player (play bar, sharing buttons, etc).
+   * Hide all elements in the player, such as the progress bar, sharing buttons, etc.
+   * (requires Vimeo PRO / Business account)
    */
   controls?: boolean
 
@@ -158,9 +159,13 @@ export interface VimeoOptions {
    */
   onError?: (error: Error) => void
   /**
-   * Triggered when the video plays.
+   * Triggered when video playback is initiated.
    */
   onPlay?: (event: TimeEvent) => void
+  /**
+   * Triggered when the video starts playing.
+   */
+  onPlaying?: (event: TimeEvent) => void
   /**
    * Triggered when the video pauses.
    */

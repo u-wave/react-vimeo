@@ -40,7 +40,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | showByline | bool | true | Show the byline on the video. |
 | color | string |  | Specify the color of the video controls. Colors may be overridden by the embed settings of the video. _(Ex: "ef2f9f")_ |
 | dnt | bool | false | Blocks the player from tracking any session data, including all cookies and analytics. |
-| controls | bool | true | Hide all elements in the player (play bar, sharing buttons, etc). |
+| controls | bool | true | Hide all elements in the player, such as the progress bar, sharing buttons, etc. (requires Vimeo PRO / Business account) |
 | loop | bool | false | Play the video again when it reaches the end. |
 | showPortrait | bool | true | Show the portrait on the video. |
 | showTitle | bool | true | Show the title on the video. |
@@ -56,7 +56,8 @@ import Vimeo from '@u-wave/react-vimeo';
 | transparent | bool | true | The responsive player and transparent background are enabled by default, to disable set this parameter to false. |
 | onReady | function |  | Sent when the Vimeo player API has loaded. Receives the Vimeo player object in the first parameter. |
 | onError | function |  | Sent when the player triggers an error. |
-| onPlay | function |  | Triggered when the video plays. |
+| onPlay | function |  | Triggered when video playback is initiated. |
+| onPlaying | function |  | Triggered when the video starts playing. |
 | onPause | function |  | Triggered when the video pauses. |
 | onEnd | function |  | Triggered any time the video playback reaches the end. Note: when `loop` is turned on, the ended event will not fire. |
 | onTimeUpdate | function |  | Triggered as the `currentTime` of the video updates. It generally fires every 250ms, but it may vary depending on the browser. |
@@ -79,6 +80,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | onResize | function |  | Triggered when the intrinsic size of the media changes. |
 | onEnterPictureInPicture | function |  | Triggered when the player enters picture-in-picture. |
 | onLeavePictureInPicture | function |  | Triggered when the player leaves picture-in-picture. |
+
 
 ## Related
 

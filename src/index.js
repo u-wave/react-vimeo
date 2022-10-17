@@ -106,6 +106,7 @@ function useVimeo(container, {
   onReady,
   onError,
   onPlay,
+  onPlaying,
   onPause,
   onEnd,
   onTimeUpdate,
@@ -191,6 +192,7 @@ function useVimeo(container, {
 
   useEventHandler(player, 'error', onError);
   useEventHandler(player, 'play', onPlay);
+  useEventHandler(player, 'playing', onPlaying);
   useEventHandler(player, 'pause', onPause);
   useEventHandler(player, 'ended', onEnd);
   useEventHandler(player, 'timeupdate', onTimeUpdate);
@@ -379,7 +381,8 @@ if (process.env.NODE_ENV !== 'production') {
 
     // Player controls
     /**
-     * Hide all elements in the player (play bar, sharing buttons, etc).
+     * Hide all elements in the player, such as the progress bar, sharing buttons, etc.
+     * (requires Vimeo PRO / Business account)
      */
     controls: PropTypes.bool,
 
@@ -465,9 +468,13 @@ if (process.env.NODE_ENV !== 'production') {
      */
     onError: PropTypes.func,
     /**
-     * Triggered when the video plays.
+     * Triggered when video playback is initiated.
      */
     onPlay: PropTypes.func,
+    /**
+     * Triggered when the video starts playing.
+     */
+    onPlaying: PropTypes.func,
     /**
      * Triggered when the video pauses.
      */

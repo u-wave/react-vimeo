@@ -41,7 +41,7 @@
   "dependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/vimeo__player": "^2.10.0",
-    "@vimeo/player": "^2.14.1",
+    "@vimeo/player": "^2.16.4",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
@@ -52,7 +52,7 @@
     "@babel/preset-env": "^7.12.10",
     "@babel/preset-react": "^7.12.10",
     "@babel/register": "^7.12.10",
-    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-babel": "^6.0.0",
     "@u-wave/react-vimeo-example": "file:example",
     "cross-env": "^7.0.3",
     "eslint": "^8.2.0",
@@ -70,7 +70,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "rollup": "^2.35.0",
-    "tsd": "^0.20.0"
+    "tsd": "^0.24.1"
   },
   "sideEffects": false
 }
