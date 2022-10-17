@@ -15,6 +15,12 @@ describe('Vimeo', () => {
     expect(onReady.calls[0].arguments[0]).toBe(playerMock);
   });
 
+  it('should use `url` prop for full vimeo URLs', async () => {
+    const { sdkMock } = render({ video: 'https://vimeo.com/179290396' });
+    expect(sdkMock).toHaveBeenCalled();
+    expect(sdkMock.calls[0].arguments[1]).toMatch({ url: 'https://vimeo.com/179290396' });
+  });
+
   it('should all onError when `ready()` fails', async () => {
     const onError = createSpy();
     const { sdkMock } = render({

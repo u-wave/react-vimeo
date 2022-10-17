@@ -29,9 +29,11 @@ class Vimeo extends React.Component {
    * @private
    */
   getInitialOptions() {
+    const { video } = this.props;
+    const videoType = /^https?:/i.test(video) ? 'url' : 'id';
     /* eslint-disable react/destructuring-assignment */
     return {
-      id: this.props.video,
+      [videoType]: video,
       width: this.props.width,
       height: this.props.height,
       autopause: this.props.autopause,
