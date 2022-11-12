@@ -68,7 +68,9 @@ async function render(initialProps) {
   }
 
   const container = await new Promise((resolve) => {
-    root.render(<Container {...initialProps} ref={resolve} />);
+    (act || noAct)(() => {
+      root.render(<Container {...initialProps} ref={resolve} />);
+    });
   });
   await readyPromise;
 
