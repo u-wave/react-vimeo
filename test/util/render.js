@@ -58,7 +58,9 @@ async function render(initialProps) {
     };
   }
   const container = new Promise((resolve) => {
-    root.render(<Container {...initialProps} ref={resolve} />);
+    act(() => {
+      root.render(<Container {...initialProps} ref={resolve} />);
+    });
   });
   await readyPromise;
 

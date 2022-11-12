@@ -90,6 +90,7 @@ function useVimeo(container, {
   muted,
   background,
   responsive,
+  playbackRate,
   dnt,
   speed,
   keyboard,
@@ -222,6 +223,9 @@ function useVimeo(container, {
   usePlayerEffect(player, () => {
     if (color) player.setColor(color);
   }, [color]);
+  usePlayerEffect(player, () => {
+    player.setPlaybackRate(playbackRate);
+  }, [playbackRate]);
   usePlayerEffect(player, () => {
     player.setLoop(loop);
   }, [loop]);

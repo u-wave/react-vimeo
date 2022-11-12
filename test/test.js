@@ -16,7 +16,9 @@ describe('Vimeo', () => {
   });
 
   it('should use `url` prop for full vimeo URLs', async () => {
-    const { sdkMock } = render({ video: 'https://vimeo.com/179290396' });
+    const { sdkMock } = await render({
+      video: 'https://vimeo.com/179290396',
+    });
     expect(sdkMock).toHaveBeenCalled();
     expect(sdkMock.calls[0].arguments[1]).toMatch({ url: 'https://vimeo.com/179290396' });
   });
@@ -140,7 +142,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the playback rate using the "playbackRate" props', async () => {
-    const { playerMock, rerender } = render({
+    const { playerMock, rerender } = await render({
       video: 169408731,
       playbackRate: 0.5,
     });
