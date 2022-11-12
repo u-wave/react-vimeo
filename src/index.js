@@ -417,6 +417,11 @@ if (process.env.NODE_ENV !== 'production') {
     responsive: PropTypes.bool,
 
     /**
+     * Specify playback rate (requires Vimeo PRO / Business account)
+     */
+    playbackRate: PropTypes.number,
+
+    /**
      * Enable playback rate controls (requires Vimeo PRO / Business account)
      */
     speed: PropTypes.bool,

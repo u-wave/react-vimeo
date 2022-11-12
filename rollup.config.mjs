@@ -1,25 +1,28 @@
+import fs from 'fs';
 import babel from '@rollup/plugin-babel';
 
-const meta = require('./package.json');
+const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+
+process.env.BABEL_ENV = 'rollup';
 
 export default {
   input: './src/index.js',
   output: [
     {
       format: 'cjs',
-      file: meta.exports['.'].require,
+      file: pkg.exports['.'].require,
       exports: 'named',
       sourcemap: true,
     },
     {
       format: 'esm',
-      file: meta.exports['.'].import,
+      file: pkg.exports['.'].import,
       sourcemap: true,
     },
   ],
 
-  external: Object.keys(meta.dependencies)
-    .concat(Object.keys(meta.peerDependencies)),
+  external: Object.keys(pkg.dependencies)
+    .concat(Object.keys(pkg.peerDependencies)),
   plugins: [
     babel({
       babelHelpers: 'bundled',

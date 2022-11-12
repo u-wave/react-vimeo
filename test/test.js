@@ -15,6 +15,12 @@ describe('Vimeo', () => {
     expect(onReady.calls[0].arguments[0]).toBe(playerMock);
   });
 
+  it('should use `url` prop for full vimeo URLs', async () => {
+    const { sdkMock } = render({ video: 'https://vimeo.com/179290396' });
+    expect(sdkMock).toHaveBeenCalled();
+    expect(sdkMock.calls[0].arguments[1]).toMatch({ url: 'https://vimeo.com/179290396' });
+  });
+
   it('should call onError when `ready()` fails', async () => {
     const onError = createSpy();
     const { sdkMock } = await render({
@@ -131,6 +137,19 @@ describe('Vimeo', () => {
 
     expect(playerMock.setWidth).toHaveBeenCalledWith('100%');
     expect(playerMock.setHeight).toHaveBeenCalledWith('800');
+  });
+
+  it('should set the playback rate using the "playbackRate" props', async () => {
+    const { playerMock, rerender } = render({
+      video: 169408731,
+      playbackRate: 0.5,
+    });
+
+    expect(playerMock.setPlaybackRate).toHaveBeenCalledWith(0.5);
+
+    await rerender({ playbackRate: 2 });
+
+    expect(playerMock.setPlaybackRate).toHaveBeenCalledWith(2);
   });
 
   it('should destroy player when unmounting', async () => {

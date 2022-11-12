@@ -106,6 +106,11 @@ export interface VimeoOptions {
   responsive?: boolean
 
   /**
+   * Specify playback rate (requires Vimeo PRO / Business account)
+   */
+  playbackRate?: number
+
+  /**
    * Enable playback rate controls (requires Vimeo PRO / Business account)
    */
   speed?: boolean

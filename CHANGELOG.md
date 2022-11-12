@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.10
+ * Fix npm package keywords. (bb944df)
+
+## 0.9.9
+ * Bump minimum `@vimeo/player` version. (@k-p-jones in #191)
+ * Document `controls` as pro-account-only. (fd61877)
+ * Add `onPlaying` event, fix documentation for `onPlay`. (@Aliath in #212)
+ * Add `playbackRate` prop. (@chidimi in #220)
+ * Support changing the `quality` prop during playback. (941b68b)
+ * Add support for passing a URL to the `video` prop, eg. for embedding private videos. (e7128b6)
+
 ## 0.9.8
  * Fix a warning about workspaces when installing with yarn. (#190)
 
