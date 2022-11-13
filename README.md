@@ -2,6 +2,8 @@
 
 Vimeo player component for React.
 
+Supported React versions: the latest releases of 16.x, 17.x, and 18.x.
+
 [Install][] - [Usage][] - [Demo][] - [Props][]
 
 ## Install
@@ -47,7 +49,7 @@ import Vimeo from '@u-wave/react-vimeo';
 | muted | bool | false | Starts in a muted state to help with autoplay |
 | background | bool | false | Starts in a background state with no controls to help with autoplay |
 | responsive | bool | false | Enable responsive mode and resize according to parent element (experimental) |
-| playbackRate | number | | Specify playback rate (requires Vimeo PRO / Business account)
+| playbackRate | number |  | Specify playback rate (requires Vimeo PRO / Business account) |
 | speed | bool | false | Enable playback rate controls (requires Vimeo PRO / Business account) |
 | keyboard | bool | true | Allows for keyboard input to trigger player events. |
 | pip | bool | false | Show the picture-in-picture button in the controlbar and enable the picture-in-picture API. |
@@ -81,7 +83,6 @@ import Vimeo from '@u-wave/react-vimeo';
 | onResize | function |  | Triggered when the intrinsic size of the media changes. |
 | onEnterPictureInPicture | function |  | Triggered when the player enters picture-in-picture. |
 | onLeavePictureInPicture | function |  | Triggered when the player leaves picture-in-picture. |
-
 
 ## Related
 
