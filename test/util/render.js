@@ -76,7 +76,9 @@ async function render(initialProps) {
     playerMock,
     rerender,
     unmount() {
-      root.unmount();
+      act(() => {
+        root.unmount();
+      });
     },
   };
 }
