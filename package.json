@@ -39,13 +39,13 @@
   },
   "homepage": "https://github.com/u-wave/react-vimeo#readme",
   "dependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react": ">= 16.0.0",
     "@types/vimeo__player": "^2.10.0",
     "@vimeo/player": "^2.16.4",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+    "react": ">= 16.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
