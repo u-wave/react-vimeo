@@ -46,7 +46,7 @@ describe('Vimeo', () => {
     await rerender({ video: 162959050 });
 
     expect(playerMock.loadVideo).toHaveBeenCalled();
-    expect(playerMock.loadVideo.calls[0].arguments[0]).toEqual(162959050);
+    expect(playerMock.loadVideo.calls[0].arguments[0]).toMatch({ id: 162959050 });
   });
 
   it('should pause the video using the "paused" prop', async () => {

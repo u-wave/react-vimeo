@@ -72,6 +72,19 @@ function useEventHandler(player, event, handler) {
 }
 
 /**
+ * @param {string|number|null} video
+ */
+function getVideoProps(video) {
+  if (video == null) {
+    return undefined;
+  }
+
+  return typeof video === 'number' || /^\d+$/.test(video)
+    ? { id: Number(video) }
+    : { url: video };
+}
+
+/**
  * @param {React.RefObject<HTMLElement>} container
  * @param {import('../index').VimeoOptions} options
  */
@@ -133,7 +146,7 @@ function useVimeo(container, {
 }) {
   const isFirstRender = useRef(true);
   const player = useVimeoPlayer(container, {
-    [typeof video === 'string' ? 'url' : 'id']: video,
+    ...getVideoProps(video),
     // The Vimeo player officially only supports integer width/height.
     // If a "100%" string was provided we apply it afterwards in an effect.
     width: typeof width === 'number' ? width : undefined,
@@ -257,8 +270,9 @@ function useVimeo(container, {
     }
 
     let cancelled = false;
-    if (video) {
-      const loaded = player.loadVideo(video);
+    const videoProps = getVideoProps(video);
+    if (videoProps) {
+      const loaded = player.loadVideo(videoProps);
       // Set the start time only when loading a new video.
       // It seems like this has to be done after the video has loaded, else it just starts at
       // the beginning!
