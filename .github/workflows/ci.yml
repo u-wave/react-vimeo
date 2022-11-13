@@ -36,6 +36,7 @@ jobs:
   test:
     name: Tests
     strategy:
+      fail-fast: false
       matrix:
         node-version: [14.x, 16.x, 18.x]
         react-version: [16.x, 17.x, 18.x]
