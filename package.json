@@ -64,7 +64,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "rollup": "^3.1.0",
-    "tsd": "^0.26.0"
+    "tsd": "^0.27.0"
   },
   "sideEffects": false
 }
