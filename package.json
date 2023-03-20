@@ -2,15 +2,21 @@
   "name": "@u-wave/react-vimeo",
   "version": "0.9.10",
   "description": "Vimeo player component for React.",
-  "main": "dist/react-vimeo.js",
-  "module": "dist/react-vimeo.es.js",
+  "main": "./dist/react-vimeo.js",
+  "module": "./dist/react-vimeo.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/react-vimeo.js",
+      "import": "./dist/react-vimeo.mjs"
+    }
+  },
   "types": "index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "rollup -c",
     "lint": "eslint --cache .",
     "test": "npm run lint && npm run tests-only && npm run tsd",
-    "tests-only": "cross-env BABEL_ENV=test mocha --require @babel/register test/*.js",
+    "tests-only": "cross-env BABEL_ENV=test c8 mocha --require @babel/register test/*.js",
     "tsd": "tsd",
     "docs": "prop-types-table src/index.js | md-insert README.md --header Props -i",
     "example": "npm run --prefix example build"
@@ -33,13 +39,13 @@
   },
   "homepage": "https://github.com/u-wave/react-vimeo#readme",
   "dependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react": ">= 16.0.0",
     "@types/vimeo__player": "^2.10.0",
     "@vimeo/player": "^2.16.4",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+    "react": ">= 16.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -48,6 +54,7 @@
     "@babel/register": "^7.12.10",
     "@rollup/plugin-babel": "^6.0.0",
     "@u-wave/react-vimeo-example": "file:example",
+    "c8": "^7.12.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.0",

@@ -8,8 +8,17 @@ process.env.BABEL_ENV = 'rollup';
 export default {
   input: './src/index.js',
   output: [
-    { format: 'cjs', file: pkg.main, exports: 'named' },
-    { format: 'es', file: pkg.module },
+    {
+      format: 'cjs',
+      file: pkg.exports['.'].require,
+      exports: 'named',
+      sourcemap: true,
+    },
+    {
+      format: 'esm',
+      file: pkg.exports['.'].import,
+      sourcemap: true,
+    },
   ],
 
   external: Object.keys(pkg.dependencies)

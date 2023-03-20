@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 'lts/*'
       - name: Install
         run: npm install
       - name: Run tests
         run: npm test
       - name: Build example
         run: |
-          npm run example
+          npm run --prefix example build
           mkdir _deploy
           cp example/bundle.js example/index.html _deploy
       - name: Publish site

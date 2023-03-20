@@ -1,6 +1,6 @@
 /* global document */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Vimeo from '@u-wave/react-vimeo'; // eslint-disable-line import/no-unresolved
 
 const videos = [
@@ -113,4 +113,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('example'));
+const root = ReactDOM.createRoot(document.querySelector('#example'));
+root.render(<App />);
