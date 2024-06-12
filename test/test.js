@@ -4,7 +4,7 @@ import render from './util/render';
 describe('Vimeo', () => {
   it('should create a Vimeo player when mounted', async () => {
     const onReady = createSpy();
-    const { sdkMock, playerMock } = render({
+    const { sdkMock, playerMock } = await render({
       video: 169408731,
       onReady,
     });
@@ -16,14 +16,14 @@ describe('Vimeo', () => {
   });
 
   it('should use `url` prop for full vimeo URLs', async () => {
-    const { sdkMock } = render({ video: 'https://vimeo.com/179290396' });
+    const { sdkMock } = await render({ video: 'https://vimeo.com/179290396' });
     expect(sdkMock).toHaveBeenCalled();
     expect(sdkMock.calls[0].arguments[1]).toMatch({ url: 'https://vimeo.com/179290396' });
   });
 
   it('should all onError when `ready()` fails', async () => {
     const onError = createSpy();
-    const { sdkMock } = render({
+    const { sdkMock } = await render({
       video: 404,
       shouldFail: true,
       onError,
@@ -36,7 +36,7 @@ describe('Vimeo', () => {
   });
 
   it('should load a different video when "video" prop changes', async () => {
-    const { sdkMock, playerMock, rerender } = render({
+    const { sdkMock, playerMock, rerender } = await render({
       video: 169408731,
     });
     expect(sdkMock).toHaveBeenCalled();
@@ -49,7 +49,7 @@ describe('Vimeo', () => {
   });
 
   it('should pause the video using the "paused" prop', async () => {
-    const { playerMock, rerender } = render({
+    const { playerMock, rerender } = await render({
       video: 169408731,
       autoplay: true,
     });
@@ -66,7 +66,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the volume using the "volume" prop', async () => {
-    const { playerMock, rerender } = render({
+    const { playerMock, rerender } = await render({
       video: 169408731,
       volume: 0.5,
     });
@@ -78,7 +78,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the start time using the "start" prop', async () => {
-    const { playerMock, rerender } = render({
+    const { playerMock, rerender } = await render({
       video: 169408731,
       start: 60,
     });
@@ -93,7 +93,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the player color using the "color" prop', async () => {
-    const { playerMock, sdkMock, rerender } = render({
+    const { playerMock, sdkMock, rerender } = await render({
       video: 169408731,
       color: '#0000ff',
     });
@@ -107,7 +107,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the looping flag using the "loop" prop', async () => {
-    const { playerMock, sdkMock, rerender } = render({
+    const { playerMock, sdkMock, rerender } = await render({
       video: 169408731,
       loop: false,
     });
@@ -121,7 +121,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the iframe width/height using the width/height props', async () => {
-    const { sdkMock, playerMock, rerender } = render({
+    const { sdkMock, playerMock, rerender } = await render({
       video: 169408731,
       width: 640,
       height: 320,
@@ -141,7 +141,7 @@ describe('Vimeo', () => {
   });
 
   it('should set the playback rate using the "playbackRate" props', async () => {
-    const { playerMock, rerender } = render({
+    const { playerMock, rerender } = await render({
       video: 169408731,
       playbackRate: 0.5,
     });
@@ -154,13 +154,13 @@ describe('Vimeo', () => {
   });
 
   it('should destroy player when unmounting', async () => {
-    const { playerMock, unmount } = render({
+    const { playerMock, unmount } = await render({
       video: 169408731,
       width: 640,
       height: 320,
     });
 
-    await unmount();
+    unmount();
 
     expect(playerMock.destroy).toHaveBeenCalled();
   });

@@ -10,4 +10,7 @@ module.exports = {
     }],
     '@babel/react',
   ],
+  plugins: TEST ? [
+    'dynamic-import-node',
+  ] : [],
 };

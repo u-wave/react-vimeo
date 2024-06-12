@@ -48,6 +48,7 @@
     "@babel/register": "^7.12.10",
     "@rollup/plugin-babel": "^6.0.0",
     "@u-wave/react-vimeo-example": "file:example",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.0",

@@ -1,5 +1,9 @@
 module.exports = {
   extends: 'airbnb',
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+  },
   rules: {
     // I disagree
     'react/jsx-filename-extension': 'off',

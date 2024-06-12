@@ -5,12 +5,15 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
 import env from 'min-react-env';
 import createVimeo from './createVimeo';
 
 Object.assign(global, env);
 
-const render = (initialProps) => {
+const reactMajor = parseInt(ReactDOM.version.split('.')[0], 10);
+
+async function render(initialProps) {
   const { Vimeo, sdkMock, playerMock } = createVimeo({
     shouldFail: initialProps.shouldFail,
   });
@@ -37,24 +40,34 @@ const render = (initialProps) => {
   }
 
   const div = env.document.createElement('div');
-  const container = new Promise((resolve) => {
-    // eslint-disable-next-line react/no-deprecated
-    ReactDOM.render(<Container {...initialProps} ref={resolve} />, div);
+  let root;
+  if (reactMajor >= 18) {
+    const { createRoot } = await import('react-dom/client');
+    root = createRoot(div);
+  } else {
+    root = {
+      render(element) {
+        // eslint-disable-next-line react/no-deprecated
+        ReactDOM.render(element, div);
+      },
+      unmount() {
+        // eslint-disable-next-line react/no-deprecated
+        ReactDOM.unmountComponentAtNode(div);
+      },
+    };
+  }
+  const container = await new Promise((resolve) => {
+    root.render(<Container {...initialProps} ref={resolve} />);
   });
 
   function rerender(newProps) {
-    return container.then((wrapper) => (
-      new Promise((resolve) => {
-        wrapper.setState({ props: newProps }, () => {
-          Promise.resolve().then(resolve);
-        });
-      })
-    ));
+    return act(async () => {
+      container.setState({ props: newProps });
+    });
   }
 
   function unmount() {
-    // eslint-disable-next-line react/no-deprecated
-    ReactDOM.unmountComponentAtNode(div);
+    root.unmount();
   }
 
   return {
@@ -64,6 +77,6 @@ const render = (initialProps) => {
     rerender,
     unmount,
   };
-};
+}
 
 export default render;
