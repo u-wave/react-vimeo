@@ -13,7 +13,7 @@ Object.assign(global, env, {
   navigator: { userAgent: 'min-react-env' },
 });
 
-const reactMajor = parseInt(ReactDOM.version.split('.')[0], 10);
+const reactMajor = parseInt((ReactDOM.version || '16').split('.')[0], 10);
 
 async function render(initialProps) {
   const { Vimeo, sdkMock, playerMock } = createVimeo({
