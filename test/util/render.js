@@ -15,6 +15,10 @@ Object.assign(global, env, {
 
 const reactMajor = parseInt((ReactDOM.version || '16').split('.')[0], 10);
 
+function noAct(fn) {
+  return fn();
+}
+
 async function render(initialProps) {
   const { Vimeo, sdkMock, playerMock } = createVimeo({
     shouldFail: initialProps.shouldFail,
@@ -63,7 +67,7 @@ async function render(initialProps) {
   });
 
   function rerender(newProps) {
-    return act(async () => {
+    return (act || noAct)(async () => {
       container.setState({ props: newProps });
     });
   }
