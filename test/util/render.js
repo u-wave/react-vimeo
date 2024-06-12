@@ -10,7 +10,7 @@ import env from 'min-react-env';
 import createVimeo from './createVimeo';
 
 Object.assign(global, env, {
-  navigator: {},
+  navigator: { userAgent: 'min-react-env' },
 });
 
 const reactMajor = parseInt(ReactDOM.version.split('.')[0], 10);
