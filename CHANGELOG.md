@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.9.11
+ * Fix type bug. (d0d38a84d4b5f3f94d6aaad681d0f90492c8ef4c)
+
 ## 0.9.10
  * Fix npm package keywords. (bb944df)
 
