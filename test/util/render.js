@@ -9,9 +9,8 @@ import { act } from 'react-dom/test-utils';
 import env from 'min-react-env';
 import createVimeo from './createVimeo';
 
-Object.assign(global, env, {
-  navigator: { userAgent: 'min-react-env' },
-});
+Object.assign(global, env);
+global.navigator ??= { userAgent: 'min-react-env' };
 
 const reactMajor = parseInt((ReactDOM.version || '16').split('.')[0], 10);
 
