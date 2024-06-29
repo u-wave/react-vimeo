@@ -3,15 +3,12 @@
  * https://github.com/troybetz/react-youtube
  */
 
+/* global document */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import env from 'min-react-env';
+import 'min-react-env/install';
 import createVimeo from './createVimeo';
-
-Object.assign(global, env, {
-  navigator: { userAgent: 'min-react-env' },
-});
 
 const reactMajor = parseInt((ReactDOM.version || '16').split('.')[0], 10);
 
@@ -45,7 +42,7 @@ async function render(initialProps) {
     }
   }
 
-  const div = env.document.createElement('div');
+  const div = document.createElement('div');
   let root;
   if (reactMajor >= 18) {
     const { createRoot } = await import('react-dom/client');
