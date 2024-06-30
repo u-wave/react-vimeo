@@ -114,7 +114,6 @@ function useVimeo(container, {
   transparent,
   paused,
   volume,
-  playbackRate,
   start,
 
   // Events
@@ -244,11 +243,6 @@ function useVimeo(container, {
   usePlayerEffect(player, () => {
     player.setVolume(volume);
   }, [volume]);
-  usePlayerEffect(player, () => {
-    if (playbackRate != null) {
-      player?.setPlaybackRate(playbackRate);
-    }
-  }, [playbackRate]);
   usePlayerEffect(player, () => {
     player.getPaused().then((prevPaused) => {
       if (paused && !prevPaused) {

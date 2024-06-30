@@ -1,5 +1,23 @@
 module.exports = {
-  extends: 'airbnb',
+  extends: [
+    'eslint:recommended',
+    'plugin:import/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+  ],
+  plugins: [
+    'import',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+  ],
+
+  env: {
+    es6: true,
+    browser: true,
+  },
+
   parserOptions: {
     ecmaVersion: 2022,
     sourceType: 'module',

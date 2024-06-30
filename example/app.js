@@ -1,4 +1,3 @@
-/* global document */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Vimeo from '@u-wave/react-vimeo'; // eslint-disable-line import/no-unresolved
@@ -62,6 +61,7 @@ class App extends React.Component {
           <div className="collection">
             {videos.map((choice, index) => (
               <a
+                key={choice.id}
                 href={`#!/video/${index}`}
                 className={`collection-item ${video === choice ? 'active' : ''}`}
                 onClick={() => this.selectVideo(index)}
