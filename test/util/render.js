@@ -3,10 +3,11 @@
  * https://github.com/troybetz/react-youtube
  */
 
-import 'min-react-env/install';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
+// Doing this after React is loaded makes React do a bit less DOM work
+import 'min-react-env/install';
 import env from 'min-react-env';
 import createVimeo from './createVimeo';
 
