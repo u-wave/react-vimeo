@@ -3,14 +3,12 @@
  * https://github.com/troybetz/react-youtube
  */
 
+import 'min-react-env/install';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import env from 'min-react-env';
 import createVimeo from './createVimeo';
-
-Object.assign(global, env);
-global.navigator ??= { userAgent: 'min-react-env' };
 
 const reactMajor = parseInt((ReactDOM.version || '16').split('.')[0], 10);
 
