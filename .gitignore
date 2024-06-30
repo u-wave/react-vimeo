@@ -4,3 +4,4 @@ node_modules
 /generated-docs.md
 .eslintcache
 package-lock.json
+coverage

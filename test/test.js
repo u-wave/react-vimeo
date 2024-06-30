@@ -21,14 +21,13 @@ describe('Vimeo', () => {
     expect(sdkMock.calls[0].arguments[1]).toMatch({ url: 'https://vimeo.com/179290396' });
   });
 
-  it('should all onError when `ready()` fails', async () => {
+  it('should call onError when `ready()` fails', async () => {
     const onError = createSpy();
     const { sdkMock } = await render({
       video: 404,
       shouldFail: true,
       onError,
     });
-    await Promise.resolve();
     expect(sdkMock).toHaveBeenCalled();
     expect(sdkMock.calls[0].arguments[1]).toMatch({ id: 404 });
     expect(onError).toHaveBeenCalled();
@@ -45,7 +44,7 @@ describe('Vimeo', () => {
     await rerender({ video: 162959050 });
 
     expect(playerMock.loadVideo).toHaveBeenCalled();
-    expect(playerMock.loadVideo.calls[0].arguments[0]).toEqual(162959050);
+    expect(playerMock.loadVideo.calls[0].arguments[0]).toMatch({ id: 162959050 });
   });
 
   it('should pause the video using the "paused" prop', async () => {
@@ -137,7 +136,7 @@ describe('Vimeo', () => {
     });
 
     expect(playerMock.setWidth).toHaveBeenCalledWith('100%');
-    expect(playerMock.setHeight).toHaveBeenCalledWith(800);
+    expect(playerMock.setHeight).toHaveBeenCalledWith('800');
   });
 
   it('should set the playback rate using the "playbackRate" props', async () => {

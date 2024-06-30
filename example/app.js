@@ -1,6 +1,5 @@
-/* global document */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Vimeo from '@u-wave/react-vimeo'; // eslint-disable-line import/no-unresolved
 
 const videos = [
@@ -62,6 +61,7 @@ class App extends React.Component {
           <div className="collection">
             {videos.map((choice, index) => (
               <a
+                key={choice.id}
                 href={`#!/video/${index}`}
                 className={`collection-item ${video === choice ? 'active' : ''}`}
                 onClick={() => this.selectVideo(index)}
@@ -113,5 +113,5 @@ class App extends React.Component {
   }
 }
 
-// eslint-disable-next-line react/no-deprecated
-ReactDOM.render(<App />, document.getElementById('example'));
+const root = ReactDOM.createRoot(document.querySelector('#example'));
+root.render(<App />);

@@ -22,7 +22,11 @@ async function render(initialProps) {
     shouldFail: initialProps.shouldFail,
   });
 
-  let component;
+  let resolveReady;
+  const readyPromise = new Promise((resolve) => {
+    resolveReady = resolve;
+  });
+
   // Emulate changes to component.props using a container component's state
   class Container extends React.Component {
     constructor(ytProps) {
@@ -31,14 +35,16 @@ async function render(initialProps) {
       this.state = { props: ytProps };
     }
 
+    componentDidMount() {
+      // Wait for the initial `setPlayer()` to be rendered.
+      setTimeout(() => resolveReady());
+    }
+
     render() {
       const { props } = this.state;
 
       return (
-        <Vimeo
-          ref={(vimeo) => { component = vimeo; }}
-          {...props}
-        />
+        <Vimeo {...props} />
       );
     }
   }
@@ -60,9 +66,13 @@ async function render(initialProps) {
       },
     };
   }
+
   const container = await new Promise((resolve) => {
-    root.render(<Container {...initialProps} ref={resolve} />);
+    (act || noAct)(() => {
+      root.render(<Container {...initialProps} ref={resolve} />);
+    });
   });
+  await readyPromise;
 
   function rerender(newProps) {
     return (act || noAct)(async () => {
@@ -70,16 +80,15 @@ async function render(initialProps) {
     });
   }
 
-  function unmount() {
-    root.unmount();
-  }
-
   return {
     sdkMock,
     playerMock,
-    component,
     rerender,
-    unmount,
+    unmount() {
+      act(() => {
+        root.unmount();
+      });
+    },
   };
 }
 
