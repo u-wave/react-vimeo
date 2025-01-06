@@ -41,8 +41,7 @@
   "dependencies": {
     "@types/react": ">= 16.0.0",
     "@types/vimeo__player": "^2.10.0",
-    "@vimeo/player": "^2.16.4",
-    "prop-types": "^15.7.2"
+    "@vimeo/player": "^2.16.4"
   },
   "peerDependencies": {
     "react": ">= 16.0.0"
