@@ -50,7 +50,7 @@
     "@u-wave/react-vimeo-example": "file:example",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "cross-env": "^7.0.3",
-    "eslint": "^8.2.0",
+    "eslint": "^9.39.2",
     "eslint-config-airbnb": "^19.0.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
